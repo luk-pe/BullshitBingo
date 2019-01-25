@@ -25,4 +25,46 @@ public class Template {
     @ColumnInfo(name = "createdDate")
     @NonNull
     private Date created;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NonNull
+    public String getName() {
+        return name;
+    }
+
+    public void setName(@NonNull String name) {
+        this.name = name;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public boolean isPriv() {
+        return priv;
+    }
+
+    public void setPriv(boolean priv) {
+        this.priv = priv;
+    }
+
+    @NonNull
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(@NonNull Date created) {
+        this.created = created;
+    }
 }

@@ -15,6 +15,7 @@ import java.util.Date;
         onDelete = ForeignKey.CASCADE))
 
 public class Game {
+
     @ColumnInfo(name = "id")
     private @PrimaryKey(autoGenerate = true) int id;
 
@@ -31,4 +32,38 @@ public class Game {
     private int template;
 
     //TODO: Store position of the items in the game
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NonNull
+    public Date getStarted() {
+        return started;
+    }
+
+    public void setStarted(@NonNull Date started) {
+        this.started = started;
+    }
+
+    @NonNull
+    public Date getFinished() {
+        return finished;
+    }
+
+    public void setFinished(@NonNull Date finished) {
+        this.finished = finished;
+    }
+
+    public int getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(int template) {
+        this.template = template;
+    }
 }

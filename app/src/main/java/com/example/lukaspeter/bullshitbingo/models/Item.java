@@ -23,4 +23,28 @@ public class Item {
     @NonNull
     private int template;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NonNull
+    public String getName() {
+        return name;
+    }
+
+    public void setName(@NonNull String name) {
+        this.name = name;
+    }
+
+    public int getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(int template) {
+        this.template = template;
+    }
 }

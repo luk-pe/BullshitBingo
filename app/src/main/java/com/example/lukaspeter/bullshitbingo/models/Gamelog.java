@@ -21,4 +21,29 @@ public class Gamelog {
     @ColumnInfo(name = "checked")
     private Date checked;
     //TODO log if check was set or deleted?
+
+
+    public int getGame() {
+        return game;
+    }
+
+    public void setGame(int game) {
+        this.game = game;
+    }
+
+    public int getItem() {
+        return item;
+    }
+
+    public void setItem(int item) {
+        this.item = item;
+    }
+
+    public Date getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Date checked) {
+        this.checked = checked;
+    }
 }
