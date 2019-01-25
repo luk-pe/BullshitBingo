@@ -3,6 +3,7 @@ package com.example.lukaspeter.bullshitbingo.models;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.support.annotation.NonNull;
 
 import java.util.Date;
 
@@ -19,6 +20,8 @@ public class Gamelog {
     private int item;
 
     @ColumnInfo(name = "checked")
+    //@NonNull is required but I don't know why
+    @NonNull
     private Date checked;
     //TODO log if check was set or deleted?
 
