@@ -1,5 +1,6 @@
 package com.example.lukaspeter.bullshitbingo.activities;
 
+import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,6 +13,7 @@ import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.fragments.BrowseFragment;
 import com.example.lukaspeter.bullshitbingo.fragments.MyGamesFragment;
 import com.example.lukaspeter.bullshitbingo.fragments.SearchFragment;
+import com.example.lukaspeter.bullshitbingo.models.AppDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +58,11 @@ public class MainActivity extends AppCompatActivity {
             setTitle(R.string.title_browse);
         }
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //Create an Instance of AppDatabase
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "local-database").build();
+
     }
 }
