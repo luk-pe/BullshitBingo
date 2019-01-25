@@ -1,15 +1,16 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import java.util.Date;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+
 
 @Entity
 public class Template {
     @ColumnInfo(name = "id")
-    private @PrimaryKey (autoGenerate = true) int id;
+    private @PrimaryKey(autoGenerate = true) int id;
 
     @ColumnInfo(name = "name")
     @NonNull

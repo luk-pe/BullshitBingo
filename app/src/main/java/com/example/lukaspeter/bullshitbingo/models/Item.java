@@ -1,9 +1,9 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.support.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
 
 @Entity(foreignKeys = @ForeignKey(entity = Template.class,
         parentColumns = "id",

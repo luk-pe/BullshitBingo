@@ -1,11 +1,12 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
-import java.util.Date;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 
-@Entity (foreignKeys = @ForeignKey(entity = Game.class,
+import java.util.Date;
+
+@Entity(foreignKeys = @ForeignKey(entity = Game.class,
         parentColumns = "id",
         childColumns = "game",
         //TODO: check onDelete

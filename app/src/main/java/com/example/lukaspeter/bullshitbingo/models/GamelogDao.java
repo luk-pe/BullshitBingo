@@ -1,9 +1,10 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
-import androidx.room.Dao;
-import androidx.room.Insert;
 
-import static androidx.room.OnConflictStrategy.IGNORE;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+
+import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 
 @Dao
 public interface GamelogDao {
