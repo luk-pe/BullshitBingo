@@ -1,5 +1,6 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -14,10 +15,13 @@ public interface TemplateDao {
 
     //TODO: check onConflict
     @Insert(onConflict = IGNORE)
-    void insertTemplates (Template ... templates);
+    void insertTemplates (Template template);
 
     @Delete
-    void deleteTemplates (Template ... templates);
+    void deleteTemplates (Template template);
+
+    @Query("SELECT * FROM Template")
+    LiveData<List<Template>> getAllTemplates();
 
     @Query("SELECT * FROM Template WHERE id= :id")
     Template templateById(int id);
@@ -25,5 +29,6 @@ public interface TemplateDao {
     @Query("SELECT * FROM Template WHERE name LIKE :input OR creator LIKE :input")
     List<Template> findTemplate(String input);
     //TODO: add "%" to the input
+
 
 }
