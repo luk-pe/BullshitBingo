@@ -1,5 +1,7 @@
 package com.example.lukaspeter.bullshitbingo.activities;
 
+import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,6 +14,7 @@ import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.fragments.BrowseFragment;
 import com.example.lukaspeter.bullshitbingo.fragments.MyGamesFragment;
 import com.example.lukaspeter.bullshitbingo.fragments.SearchFragment;
+import com.example.lukaspeter.bullshitbingo.models.AppDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.navigation_browse:
-                    selectedFragment = BrowseFragment.newInstance(MainActivity.this);
+                    selectedFragment = BrowseFragment.newInstance();
                     setTitle(R.string.title_browse);
                     break;
                 case R.id.navigation_mygames:
@@ -48,10 +51,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // TODO - just for Test Case
+        Intent gameIntent = new Intent(this,GameActivity.class);
+        startActivity(gameIntent);
+
         // Start Browse Fragment onCreate
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frame_layout, BrowseFragment.newInstance(this));
+            transaction.replace(R.id.frame_layout, BrowseFragment.newInstance());
             transaction.commit();
             setTitle(R.string.title_browse);
         }
@@ -59,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        //Create an Instance of AppDatabase
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "local-database").build();
 
     }
 }

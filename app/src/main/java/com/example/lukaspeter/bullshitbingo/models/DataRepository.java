@@ -23,7 +23,7 @@ public class DataRepository {
         return mAllTemplates;
     }
     public LiveData<List<Item>> getTemplateItems(int templateId){
-        mItemDao.getTemplateItems(templateId);
+        mTemplateItems = mItemDao.getTemplateItems(templateId);
         return mTemplateItems;
     }
 

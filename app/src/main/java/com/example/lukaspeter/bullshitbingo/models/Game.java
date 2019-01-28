@@ -31,7 +31,9 @@ public class Game {
     @NonNull
     private int template;
 
-    //TODO: Store position of the items in the game
+    @ColumnInfo(name = "itemPositions")
+    @NonNull
+    private String itemPositions;
 
     public int getId() {
         return id;
@@ -65,5 +67,14 @@ public class Game {
 
     public void setTemplate(int template) {
         this.template = template;
+    }
+
+    @NonNull
+    public String getItemPositions() {
+        return itemPositions;
+    }
+
+    public void setItemPositions(@NonNull String itemPositions) {
+        this.itemPositions = itemPositions;
     }
 }
