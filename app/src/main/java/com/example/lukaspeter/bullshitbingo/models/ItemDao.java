@@ -1,5 +1,6 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -15,11 +16,11 @@ public interface ItemDao {
 
     //TODO: check onConflict
     @Insert(onConflict = REPLACE)
-    void insertItems(Item ... items);
+    void insertItem(Item item);
 
     @Delete
-    void deleteItems(Item ... items);
+    void deleteItem(Item item);
 
     @Query("SELECT * FROM Item WHERE template= :template")
-    List<Item> templateItems(int template);
+    LiveData<List<Item>> getTemplateItems(int template);
 }

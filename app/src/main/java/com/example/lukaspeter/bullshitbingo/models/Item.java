@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 @Entity(foreignKeys = @ForeignKey(entity = Template.class,
         parentColumns = "id",
         childColumns = "template",
-        //TODO: check onDelete
         onDelete = ForeignKey.CASCADE), primaryKeys = {"id", "template"})
 
 public class Item {
@@ -20,8 +19,13 @@ public class Item {
     private String name;
 
     @ColumnInfo(name = "template")
-    @NonNull
     private int template;
+
+    public Item (int id, String name, int template){
+        this.id = id;
+        this.name = name;
+        this.template = template;
+    }
 
     public int getId() {
         return id;
