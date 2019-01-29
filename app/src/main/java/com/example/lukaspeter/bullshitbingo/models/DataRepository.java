@@ -26,20 +26,38 @@ public class DataRepository {
         mItemDao.getTemplateItems(templateId);
         return mTemplateItems;
     }
+
     public void insertTemplate (Template template){
         new insertAsyncTask(mTemplateDao).execute(template);
     }
 
-    private static class insertAsyncTask extends AsyncTask <Template, Void, Void> {
-        private TemplateDao mAsyncTaskTemplateDao;
-        insertAsyncTask(TemplateDao dao){
-            mAsyncTaskTemplateDao = dao;
+    public void insertItem (Item item) {
+        new insertAsyncTask(mItemDao).execute(item);
+    }
+
+    private static class insertAsyncTask extends AsyncTask <Object, Void, Void> {
+        private TemplateDao templateDao;
+        private ItemDao itemDao;
+
+        public insertAsyncTask(Object dao){
+
+            if (dao instanceof TemplateDao) {
+                templateDao = (TemplateDao) dao;
+            }
+            else if (dao instanceof Item) {
+                itemDao = (ItemDao) dao;
+            }
         }
 
-
         @Override
-        protected Void doInBackground(final Template... params){
-            mAsyncTaskTemplateDao.insertTemplate(params [0]);
+        protected Void doInBackground(final Object... params){
+
+            if (params[0] instanceof Template) {
+                templateDao.insertTemplate((Template) params[0]);
+            }
+            else if (params[0] instanceof Item) {
+                itemDao.insertItem((Item) params[0]);
+            }
             return null;
         }
 
