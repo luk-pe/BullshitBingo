@@ -41,18 +41,56 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+    //Create Test Data
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
-        private final TemplateDao mDao;
+        private final TemplateDao templateDao;
+        private final ItemDao itemDao;
         PopulateDbAsync(AppDatabase db) {
-            mDao = db.templateDao();
+            templateDao = db.templateDao();
+            itemDao=db.itemDao();
         }
         @Override
         protected Void doInBackground(final Void... params){
-            //mDao.deleteAllTemplates();
+            //templateDao.deleteAllTemplates();
+            itemDao.deleteAllItems();
             Template template = new Template("Dinge die Michi sagt", "Lukas", false, new Date());
-            mDao.insertTemplate(template);
+            templateDao.insertTemplate(template);
             template = new Template("Autos die von Lüdin gerammt werden", "Lukas", false, new Date());
-            mDao.insertTemplate(template);
+            templateDao.insertTemplate(template);
+            Item item = new Item(1, "Du hast die Kontrolle über dein Leben verloren", 1);
+            itemDao.insertItem(item);
+            item = new Item(2, "Lukas ist der Beste", 1);
+            itemDao.insertItem(item);
+            item = new Item(3, "kek", 1);
+            itemDao.insertItem(item);
+            item = new Item(4, "ober anstrengend", 1);
+            itemDao.insertItem(item);
+            item = new Item(5, "Beste", 1);
+            itemDao.insertItem(item);
+            item = new Item(6, "React ist über einfach", 1);
+            itemDao.insertItem(item);
+            item = new Item(7, "über lässig", 1);
+            itemDao.insertItem(item);
+            item = new Item(8, "edel", 1);
+            itemDao.insertItem(item);
+            item = new Item(9, "Bild+", 1);
+            itemDao.insertItem(item);
+            item = new Item(10, "Junge", 1);
+            itemDao.insertItem(item);
+            item = new Item(11, "ich war in Frankreich einkaufen", 1);
+            itemDao.insertItem(item);
+            item = new Item(12, "Cola Zero", 1);
+            itemDao.insertItem(item);
+            item = new Item(13, "Wenn ich Euro Jackpot gewinn", 1);
+            itemDao.insertItem(item);
+            item = new Item(14, "Kein Bock auf Praxisphase bei Coop", 1);
+            itemDao.insertItem(item);
+            item = new Item(15, "Ich geh in Europapark", 1);
+            itemDao.insertItem(item);
+            item = new Item(16, "Macan", 1);
+            itemDao.insertItem(item);
+
+
             return null;
         }
     }

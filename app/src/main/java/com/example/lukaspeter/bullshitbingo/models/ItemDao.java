@@ -21,6 +21,9 @@ public interface ItemDao {
     @Delete
     void deleteItem(Item item);
 
+    @Query("DELETE FROM Item")
+    void deleteAllItems();
+
     @Query("SELECT * FROM Item WHERE template= :template")
     LiveData<List<Item>> getTemplateItems(int template);
 }
