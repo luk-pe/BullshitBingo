@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.navigation_browse:
-                    selectedFragment = BrowseFragment.newInstance();
+                    selectedFragment = BrowseFragment.newInstance(MainActivity.this);
                     setTitle(R.string.title_browse);
                     break;
                 case R.id.navigation_mygames:
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         // Start Browse Fragment onCreate
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frame_layout, BrowseFragment.newInstance());
+            transaction.replace(R.id.frame_layout, BrowseFragment.newInstance(this));
             transaction.commit();
             setTitle(R.string.title_browse);
         }
@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        //Create an Instance of AppDatabase
-       // AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "local-database").build();
 
     }
 }

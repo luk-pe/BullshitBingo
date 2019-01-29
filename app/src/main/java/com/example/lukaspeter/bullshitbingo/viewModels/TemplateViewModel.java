@@ -19,8 +19,7 @@ public class TemplateViewModel extends AndroidViewModel {
         mAllTemplates = mDataRepository.getAllTemplates();
     }
 
-    //TODO: public?
-    LiveData<List<Template>> getAllTemplates(){
+    public LiveData<List<Template>> getAllTemplates(){
         return mAllTemplates;
     }
 

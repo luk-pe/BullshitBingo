@@ -10,13 +10,12 @@ public class DataRepository {
     private TemplateDao mTemplateDao;
     private LiveData<List<Template>> mAllTemplates;
 
-    // TODO: confirm if public is okay here-> different to tutorial -> asl michi
     public DataRepository(Application application){
         AppDatabase db = AppDatabase.getDatabase(application);
         mTemplateDao = db.templateDao();
         mAllTemplates = mTemplateDao.getAllTemplates();
     }
-    // TODO: confirm if public is okay here-> different to tutorial -> asl michi
+
     public LiveData<List<Template>> getAllTemplates(){
         return mAllTemplates;
     }
@@ -34,7 +33,7 @@ public class DataRepository {
 
         @Override
         protected Void doInBackground(final Template... params){
-            mAsyncTaskTemplateDao.insertTemplates(params [0]);
+            mAsyncTaskTemplateDao.insertTemplate(params [0]);
             return null;
         }
 

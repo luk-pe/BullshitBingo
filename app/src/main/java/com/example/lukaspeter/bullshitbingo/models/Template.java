@@ -10,7 +10,8 @@ import java.util.Date;
 @Entity
 public class Template {
     @ColumnInfo(name = "id")
-    private @PrimaryKey(autoGenerate = true) int id;
+
+    private @PrimaryKey (autoGenerate = true) int id;
 
     @ColumnInfo(name = "name")
     @NonNull
@@ -22,9 +23,18 @@ public class Template {
     @ColumnInfo(name = "priv")
     private boolean priv = true;
 
-    @ColumnInfo(name = "createdDate")
+    @ColumnInfo(name = "created")
     @NonNull
     private Date created;
+
+    public Template(@NonNull String name, String creator, boolean priv, @NonNull Date created){
+        this.name = name;
+        this.id = id;
+        this.creator = creator;
+        this.priv = priv;
+        this.created = created;
+
+    }
 
     public int getId() {
         return id;
