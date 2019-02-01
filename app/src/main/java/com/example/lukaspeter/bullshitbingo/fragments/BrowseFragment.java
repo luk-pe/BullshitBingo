@@ -21,10 +21,8 @@ import java.util.List;
 
 public class BrowseFragment extends Fragment {
     private TemplateViewModel mTemplateViewModel;
-    private Context mContext;
-    public static BrowseFragment newInstance(Context context) {
+    public static BrowseFragment newInstance() {
         BrowseFragment fragment = new BrowseFragment();
-        fragment.mContext = context;
         //Bundle args = new Bundle();
         //fragment.setArguments(args);
         return fragment;
@@ -44,7 +42,7 @@ public class BrowseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState ){
         RecyclerView recyclerView = this.getActivity().findViewById(R.id.recyclerview);
-        final TemplateListAdapter adapter = new TemplateListAdapter(mContext);
+        final TemplateListAdapter adapter = new TemplateListAdapter(this.getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
