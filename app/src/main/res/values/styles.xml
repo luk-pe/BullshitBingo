@@ -21,9 +21,14 @@
     <style name="template_name">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">26dp</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingLeft">8dp</item>
+    </style>
+    <style name="template_additional_information">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">26dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginBottom">2dp</item>
         <item name="android:paddingLeft">8dp</item>
     </style>
 
