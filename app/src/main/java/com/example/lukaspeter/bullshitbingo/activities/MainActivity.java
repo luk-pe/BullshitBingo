@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // TODO - just for Test Case
-        Intent gameIntent = new Intent(this,GameActivity.class);
-        startActivity(gameIntent);
+        Intent newGameIntend = new Intent(this,  NewGameActivity.class);
+        startActivity(newGameIntend);
 
         // Start Browse Fragment onCreate
         if (savedInstanceState == null) {
