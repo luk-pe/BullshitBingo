@@ -39,7 +39,7 @@ public class TemplateListAdapter extends RecyclerView.Adapter<TemplateListAdapte
     public void onBindViewHolder(TemplateViewHolder holder, int position){
         if(mTemplates!=null){
             Template current = mTemplates.get(position);
-            holder.templateItemView.setText(current.getName());//TODO: get Name richtige Methode?
+            holder.templateItemView.setText(current.getName());
         } else {
             holder.templateItemView.setText("No Template");
         }
