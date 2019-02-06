@@ -15,7 +15,7 @@ public interface TemplateDao {
 
     //TODO: check onConflict
     @Insert(onConflict = IGNORE)
-    void insertTemplate (Template template);
+    long insertTemplate (Template template);
 
     @Delete
     void deleteTemplate (Template template);
