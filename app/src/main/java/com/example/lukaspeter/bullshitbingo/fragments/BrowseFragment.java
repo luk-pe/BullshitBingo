@@ -42,7 +42,7 @@ public class BrowseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState ){
         RecyclerView recyclerView = this.getActivity().findViewById(R.id.recyclerview);
-        final TemplateListAdapter adapter = new TemplateListAdapter(this.getContext());
+        final TemplateListAdapter adapter = new TemplateListAdapter(this.getContext(),null);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 

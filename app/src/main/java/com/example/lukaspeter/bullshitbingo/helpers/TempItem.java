@@ -1,5 +1,8 @@
 package com.example.lukaspeter.bullshitbingo.helpers;
 
+/**
+ *  This class is used in the GameView to save the in game state of a game item.
+ */
 public class TempItem {
 
     private int id;

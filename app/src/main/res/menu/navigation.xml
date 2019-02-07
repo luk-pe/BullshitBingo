@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_mygames"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_mygames" />
+        android:title="@string/title_mycontent" />
 
     <item
         android:id="@+id/navigation_search"

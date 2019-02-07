@@ -61,6 +61,8 @@ public class Game {
         this.finished = finished;
     }
 
+    public boolean isFinished() { return finished != null; }
+
     public int getTemplate() {
         return template;
     }

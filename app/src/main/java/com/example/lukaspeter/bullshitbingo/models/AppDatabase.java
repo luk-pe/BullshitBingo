@@ -51,8 +51,8 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(final Void... params){
-            //templateDao.deleteAllTemplates();
             itemDao.deleteAllItems();
+            //templateDao.deleteAllTemplates();
             Template template = new Template("Dinge die Michi sagt", "Lukas", false, new Date());
             long tid = templateDao.insertTemplate(template);
             template = new Template("Autos die von Lüdin gerammt werden", "Lukas", false, new Date());

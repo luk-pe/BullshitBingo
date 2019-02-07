@@ -14,32 +14,33 @@ import java.util.List;
 
 public class TemplateListAdapter extends RecyclerView.Adapter<TemplateListAdapter.TemplateViewHolder> {
 
-    class TemplateViewHolder extends RecyclerView.ViewHolder{
-        private final TextView templateItemView;
-
-        private TemplateViewHolder (View itemView){
-            super(itemView);
-            templateItemView = itemView.findViewById(R.id.textView);
-        }
-    }
-
     private final LayoutInflater mInflater;
     private List<Template> mTemplates;
+    private OnClickTemplateListListener mListener;
 
-    public TemplateListAdapter(Context context){
+    public TemplateListAdapter(Context context, OnClickTemplateListListener listener){
         mInflater = LayoutInflater.from(context);
+        mListener = listener;
     }
 
     @Override
     public TemplateViewHolder onCreateViewHolder(ViewGroup parent, int ViewType){
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-        return new TemplateViewHolder(itemView);
+        View templateView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        return new TemplateViewHolder(templateView);
     }
     @Override
     public void onBindViewHolder(TemplateViewHolder holder, int position){
         if(mTemplates!=null){
-            Template current = mTemplates.get(position);
-            holder.templateItemView.setText(current.getName());
+            final Template currentTemplate = mTemplates.get(position);
+
+            holder.templateItemView.setText(currentTemplate.getName());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onClickTemplateListItem(currentTemplate);
+                    notifyDataSetChanged();
+                }
+            });
         } else {
             holder.templateItemView.setText("No Template");
         }
@@ -57,6 +58,18 @@ public class TemplateListAdapter extends RecyclerView.Adapter<TemplateListAdapte
         }else{
             return 0;
         }
+    }
 
+    class TemplateViewHolder extends RecyclerView.ViewHolder{
+        private final TextView templateItemView;
+
+        private TemplateViewHolder (View itemView){
+            super(itemView);
+            templateItemView = itemView.findViewById(R.id.textView);
+        }
+    }
+
+    public interface OnClickTemplateListListener {
+        void onClickTemplateListItem(Template template);
     }
 }

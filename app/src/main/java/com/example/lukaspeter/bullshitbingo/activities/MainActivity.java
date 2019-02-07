@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.fragments.BrowseFragment;
-import com.example.lukaspeter.bullshitbingo.fragments.MyGamesFragment;
+import com.example.lukaspeter.bullshitbingo.fragments.MyContentFragment;
 import com.example.lukaspeter.bullshitbingo.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
                     setTitle(R.string.title_browse);
                     break;
                 case R.id.navigation_mygames:
-                    selectedFragment = MyGamesFragment.newInstance();
-                    setTitle(R.string.title_mygames);
+                    selectedFragment = MyContentFragment.newInstance();
+                    setTitle(R.string.title_mycontent);
                     break;
                 case R.id.navigation_search:
                     selectedFragment = SearchFragment.newInstance();
@@ -48,10 +48,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // TODO - just for Test Case
-        Intent newGameIntend = new Intent(this,  NewGameActivity.class);
-        startActivity(newGameIntend);
 
         // Start Browse Fragment onCreate
         if (savedInstanceState == null) {
