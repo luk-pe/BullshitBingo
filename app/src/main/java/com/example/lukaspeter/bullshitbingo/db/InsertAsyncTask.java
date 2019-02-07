@@ -7,7 +7,7 @@ import com.example.lukaspeter.bullshitbingo.models.ItemDao;
 import com.example.lukaspeter.bullshitbingo.models.Template;
 import com.example.lukaspeter.bullshitbingo.models.TemplateDao;
 
-public class InsertAsyncTask extends AsyncTask<Object, Void, Void> {
+public class InsertAsyncTask extends AsyncTask<Object, Void, Long> {
     private TemplateDao templateDao;
     private ItemDao itemDao;
 
@@ -22,15 +22,16 @@ public class InsertAsyncTask extends AsyncTask<Object, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(final Object... params){
-
+    protected Long doInBackground(final Object... params){
+        long id = 0;
         if (params[0] instanceof Template) {
-            templateDao.insertTemplate((Template) params[0]);
+            id = templateDao.insertTemplate((Template) params[0]);
         }
         else if (params[0] instanceof Item) {
             itemDao.insertItem((Item) params[0]);
         }
-        return null;
+
+        return id;
     }
 
 }

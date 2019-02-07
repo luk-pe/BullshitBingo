@@ -48,9 +48,16 @@ public class DataRepository {
         mTemplateItems = mItemDao.getTemplateItems(templateId);
         return mTemplateItems;
     }
-
-    public void insertTemplate (Template template){
-        new InsertAsyncTask(mTemplateDao).execute(template);
+    public long insertTemplate (Template template){
+        long id;
+        try{
+            id = new InsertAsyncTask(mTemplateDao).execute(template).get();
+        } catch (ExecutionException ex){
+            id = 0;
+        } catch (InterruptedException e){
+            id = 0;
+        }
+        return id;
     }
 
     /**

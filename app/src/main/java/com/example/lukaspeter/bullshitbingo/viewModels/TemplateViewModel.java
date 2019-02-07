@@ -25,7 +25,8 @@ public class TemplateViewModel extends AndroidViewModel {
         return mAllTemplates;
     }
 
-    public void insertTemplate(Template template){
-        mDataRepository.insertTemplate(template);
+    public long insertTemplate(Template template){
+        long id = mDataRepository.insertTemplate(template);
+        return id;
     }
 }

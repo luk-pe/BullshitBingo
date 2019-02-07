@@ -8,6 +8,11 @@
     <string name="title_mytemplates">My Templates</string>
     <string name="title_mygames">My Games</string>
     <string name="call_bingo">CALL BINGO!</string>
+    <string name="emptyInputFields">Please fill all input fields!</string>
+    <string name="emptyFields">Empty Fields</string>
+    <string name="ok">Ok!</string>
+    <string name="tryAgain">Try Again!</string>
+    <string name="templateNotCreated">Template has not been created!</string>
     <string name="bingo">BINGO!</string>
     <string name="question_start_game">Do you want to play a game with this template?</string>
     <string name="play">Play</string>

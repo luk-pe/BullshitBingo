@@ -3,7 +3,6 @@ package com.example.lukaspeter.bullshitbingo.viewModels;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.util.Log;
 
 import com.example.lukaspeter.bullshitbingo.models.DataRepository;
 import com.example.lukaspeter.bullshitbingo.models.Item;
@@ -21,5 +20,8 @@ public class ItemViewModel extends AndroidViewModel {
     public LiveData<List<Item>> getTemplateItems(int templateId){
         mTemplateItems = mDataRepository.getTemplateItems(templateId);
         return mTemplateItems;
+    }
+    public void insertItem(Item item){
+        mDataRepository.insertItem(item);
     }
 }
