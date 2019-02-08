@@ -27,7 +27,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class TemplateDetailActivity extends AppCompatActivity {
+public class TemplateDetailActivity extends AppCompatActivity implements GameGridViewAdapter.OnClickGridViewItemListener {
 
     private Button btnStart;
     private ItemViewModel mItemViewModel;
@@ -61,7 +61,7 @@ public class TemplateDetailActivity extends AppCompatActivity {
 
     private void initGridViewAdapter() {
         final GridView gridView = (GridView) findViewById(R.id.template_detail_grid_view);
-        final GameGridViewAdapter adapter = new GameGridViewAdapter(tempItems,this,null);
+        final GameGridViewAdapter adapter = new GameGridViewAdapter(tempItems,this,this);
         gridView.setAdapter(adapter);
 
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
@@ -92,5 +92,10 @@ public class TemplateDetailActivity extends AppCompatActivity {
         Intent mIntent = new Intent(this, GameActivity.class);
         mIntent.putExtra("game_id", mTemplate.getId()); // TODO change to id of game
         startActivity(mIntent);
+    }
+
+    @Override
+    public void onClickGridViewItem(TempItem item) {
+        // Do nothing in DetailView
     }
 }
