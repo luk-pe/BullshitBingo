@@ -55,8 +55,8 @@ public abstract class AppDatabase extends RoomDatabase {
             //templateDao.deleteAllTemplates();
             Template template = new Template("Dinge die Michi sagt", "Lukas", false, new Date());
             long tid = templateDao.insertTemplate(template);
-            template = new Template("Autos die von Lüdin gerammt werden", "Lukas", false, new Date());
-            templateDao.insertTemplate(template);
+           // template = new Template("Autos die von Lüdin gerammt werden", "Lukas", false, new Date());
+            //templateDao.insertTemplate(template);
             Item item = new Item(1, "Du hast die Kontrolle über dein Leben verloren", (int) tid);
             itemDao.insertItem(item);
             item = new Item(2, "Lukas ist der Beste", (int) tid);
@@ -79,7 +79,7 @@ public abstract class AppDatabase extends RoomDatabase {
             itemDao.insertItem(item);
             item = new Item(11, "ich war in Frankreich einkaufen", (int) tid);
             itemDao.insertItem(item);
-            item = new Item(12, "Cola Zero", 1);
+            item = new Item(12, "Cola Zero", (int) tid); // TODO Lukas -> hier war cola zero bug weil du 1 statt (int) tid gemacht hast...
             itemDao.insertItem(item);
             item = new Item(13, "Wenn ich Euro Jackpot gewinn", (int) tid);
             itemDao.insertItem(item);
