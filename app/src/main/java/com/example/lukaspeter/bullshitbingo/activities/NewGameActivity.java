@@ -2,10 +2,12 @@ package com.example.lukaspeter.bullshitbingo.activities;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,16 +24,15 @@ public class NewGameActivity extends AppCompatActivity {
     private EditText templateNameInput;
     private TemplateViewModel mTemplateViewModel;
     private ItemViewModel mItemViewModel;
-    private Button createTemplateButton;
     private Template template;
-    Item item;
+    private Item item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
         templateNameInput = findViewById(R.id.templateName);
-        createTemplateButton = findViewById(R.id.button_createTemplate);
+        Button createTemplateButton = findViewById(R.id.button_createTemplate);
         mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
         createTemplateButton.setOnClickListener(new View.OnClickListener(){
@@ -75,6 +76,7 @@ public class NewGameActivity extends AppCompatActivity {
                 else {
                     template = new Template(templateNameString, "User", true, new Date());
                     long tid = mTemplateViewModel.insertTemplate(template);
+                    Log.d("Lukas", "tid: " + tid);
                     // check if tid == 0 -> template wasn't created -> exception in dataRepository
                     if (tid == 0){
                         AlertDialog.Builder builder;
@@ -95,13 +97,18 @@ public class NewGameActivity extends AppCompatActivity {
                     }
                     // template was created
                     else {
-
+                        // create items
                         for (int i = 0; i < inputFieldsIds.length; i++) {
                             EditText itemNameInput = findViewById(inputFieldsIds[i]);
                             String itemNameString = itemNameInput.getText().toString();
                             item = new Item(i + 1, itemNameString, (int) tid);
                             mItemViewModel.insertItem(item);
                         }
+                        //show template with items
+                        Intent mIntent = new Intent(NewGameActivity.this, TemplateDetailActivity.class);
+                        mIntent.putExtra("template_id", tid);
+                        //startActivity(mIntent);
+
                     }
                 }
             }

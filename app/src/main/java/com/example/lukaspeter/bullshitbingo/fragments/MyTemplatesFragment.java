@@ -2,24 +2,19 @@ package com.example.lukaspeter.bullshitbingo.fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lukaspeter.bullshitbingo.R;
-import com.example.lukaspeter.bullshitbingo.activities.GameActivity;
+import com.example.lukaspeter.bullshitbingo.activities.NewGameActivity;
 import com.example.lukaspeter.bullshitbingo.activities.TemplateDetailActivity;
 import com.example.lukaspeter.bullshitbingo.adapters.TemplateListAdapter;
 import com.example.lukaspeter.bullshitbingo.models.Template;
@@ -52,8 +47,8 @@ public class MyTemplatesFragment extends Fragment implements TemplateListAdapter
             @Override
             public void onClick(View view) {
                 // TODO LUKAS Intent for new Template
-                Snackbar.make(view, "Start Intent for new Template", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent mIntent = new Intent(getActivity(), NewGameActivity.class);
+                startActivity(mIntent);
             }
         });
 
