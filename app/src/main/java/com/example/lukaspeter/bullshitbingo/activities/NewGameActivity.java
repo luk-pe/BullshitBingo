@@ -106,7 +106,7 @@ public class NewGameActivity extends AppCompatActivity {
                         }
                         //show template with items
                         Intent mIntent = new Intent(NewGameActivity.this, TemplateDetailActivity.class);
-                        mIntent.putExtra("template_id", tid);
+                        mIntent.putExtra("template_id", (int) tid);
                         startActivity(mIntent);
 
                     }

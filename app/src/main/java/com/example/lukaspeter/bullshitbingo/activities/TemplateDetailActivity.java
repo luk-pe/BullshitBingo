@@ -3,16 +3,12 @@ package com.example.lukaspeter.bullshitbingo.activities;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.adapters.GameGridViewAdapter;
@@ -23,8 +19,6 @@ import com.example.lukaspeter.bullshitbingo.viewModels.ItemViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class TemplateDetailActivity extends AppCompatActivity implements GameGridViewAdapter.OnClickGridViewItemListener {
@@ -43,7 +37,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
 
         // Load Template ID from Intent
         Intent mIntent = getIntent();
-        final int templateId = mIntent.getIntExtra("template_id",0);
+        final int templateId = mIntent.getIntExtra("template_id",0); //TODO: Bug template ID wird in intend korrekt überegben aber offensichtlich hier nicht korrekt ausgelesen: templateId = 0
 
         mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
         mTemplate = mTemplateViewModel.getTemplateById(templateId);
@@ -60,7 +54,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
     }
 
     private void initGridViewAdapter() {
-        final GridView gridView = (GridView) findViewById(R.id.template_detail_grid_view);
+        final GridView gridView = findViewById(R.id.template_detail_grid_view);
         final GameGridViewAdapter adapter = new GameGridViewAdapter(tempItems,this,this);
         gridView.setAdapter(adapter);
 

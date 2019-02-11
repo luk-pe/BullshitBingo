@@ -17,6 +17,7 @@ public class InsertAsyncTask extends AsyncTask<Object, Void, Long> {
             templateDao = (TemplateDao) dao;
         }
         else if (dao instanceof ItemDao) { // TODO Hier war der Bug du kek.. du hast instanceof Item statt ItemDao gemacht
+            //TODO es war dein bug du kek
             itemDao = (ItemDao) dao;
         }
     }

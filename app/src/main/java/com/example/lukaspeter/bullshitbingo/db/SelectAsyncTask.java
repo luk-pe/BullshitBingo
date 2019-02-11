@@ -2,7 +2,6 @@ package com.example.lukaspeter.bullshitbingo.db;
 
 import android.os.AsyncTask;
 
-import com.example.lukaspeter.bullshitbingo.models.Item;
 import com.example.lukaspeter.bullshitbingo.models.ItemDao;
 import com.example.lukaspeter.bullshitbingo.models.TemplateDao;
 
@@ -15,7 +14,7 @@ public class SelectAsyncTask extends AsyncTask<Integer, Void, Object> {
         if (dao instanceof TemplateDao) {
             templateDao = (TemplateDao) dao;
         }
-        else if (dao instanceof Item) {
+        else if (dao instanceof ItemDao) {
             itemDao = (ItemDao) dao;
         }
     }
