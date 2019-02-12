@@ -27,9 +27,8 @@ MUST-HAVEs:
  
 - Android Best Practice ✅
   - https://developer.android.com/jetpack/docs/guide 
-  - 
+ 
 
-------------------
 
 NICE-TO-HAVES:
 --------------
@@ -39,7 +38,7 @@ NICE-TO-HAVES:
 - Daten in der Cloud ✅
   - Zugriff auf globale Liste von Templates die von anderen Usern erstellt wurden
   
-  -----------------
+
  Optional 
 ----------
 - Share Funktion 
