@@ -13,19 +13,21 @@ public class TemplateViewModel extends AndroidViewModel {
     private DataRepository mDataRepository;
     private LiveData<List<Template>> mAllTemplates;
 
-    public TemplateViewModel(Application application){
+    public TemplateViewModel(Application application) {
         super(application);
         mDataRepository = new DataRepository(application);
         mAllTemplates = mDataRepository.getAllTemplates();
     }
 
-    public Template getTemplateById(int id) { return mDataRepository.getTemplateById(id); }
+    public Template getTemplateById(int id) {
+        return mDataRepository.getTemplateById(id);
+    }
 
-    public LiveData<List<Template>> getAllTemplates(){
+    public LiveData<List<Template>> getAllTemplates() {
         return mAllTemplates;
     }
 
-    public long insertTemplate(Template template){
+    public long insertTemplate(Template template) {
         long id = mDataRepository.insertTemplate(template);
         return id;
     }

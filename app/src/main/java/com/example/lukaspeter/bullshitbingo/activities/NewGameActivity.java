@@ -35,7 +35,7 @@ public class NewGameActivity extends AppCompatActivity {
         Button createTemplateButton = findViewById(R.id.button_createTemplate);
         mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
-        createTemplateButton.setOnClickListener(new View.OnClickListener(){
+        createTemplateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int[] inputFieldsIds = getInputFieldsIds();
                 boolean emptyFields = false;
@@ -78,7 +78,7 @@ public class NewGameActivity extends AppCompatActivity {
                     long tid = mTemplateViewModel.insertTemplate(template);
                     Log.d("Lukas", "tid: " + tid);
                     // check if tid == 0 -> template wasn't created -> exception in dataRepository
-                    if (tid == 0){
+                    if (tid == 0) {
                         AlertDialog.Builder builder;
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             builder = new AlertDialog.Builder(NewGameActivity.this, android.R.style.Theme_Material_Dialog_Alert);
@@ -116,9 +116,10 @@ public class NewGameActivity extends AppCompatActivity {
         });
 
     }
-    private int[] getInputFieldsIds(){
+
+    private int[] getInputFieldsIds() {
         int[] inputFieldIds = new int[16];
-        for(int i =0; i<16; i++){
+        for (int i = 0; i < 16; i++) {
             int j = i + 1;
             String name = "item" + j;
             inputFieldIds[i] = this.getResources().getIdentifier(name, "id", this.getPackageName());

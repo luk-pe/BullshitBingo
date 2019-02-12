@@ -15,10 +15,10 @@ public interface TemplateDao {
 
     //TODO: check onConflict
     @Insert(onConflict = IGNORE)
-    long insertTemplate (Template template);
+    long insertTemplate(Template template);
 
     @Delete
-    void deleteTemplate (Template template);
+    void deleteTemplate(Template template);
 
     @Query("DELETE FROM Template")
     void deleteAllTemplates();

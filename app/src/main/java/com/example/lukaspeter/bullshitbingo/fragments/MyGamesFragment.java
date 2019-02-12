@@ -1,16 +1,10 @@
 package com.example.lukaspeter.bullshitbingo.fragments;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +12,7 @@ import android.view.ViewGroup;
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.activities.GameActivity;
 import com.example.lukaspeter.bullshitbingo.adapters.GamesListAdapter;
-import com.example.lukaspeter.bullshitbingo.adapters.TemplateListAdapter;
 import com.example.lukaspeter.bullshitbingo.models.Game;
-import com.example.lukaspeter.bullshitbingo.models.Template;
-import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
-
-import java.util.List;
 
 public class MyGamesFragment extends Fragment implements GamesListAdapter.OnClickGamesListListener {
 
@@ -46,9 +35,9 @@ public class MyGamesFragment extends Fragment implements GamesListAdapter.OnClic
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState ){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         RecyclerView recyclerView = this.getActivity().findViewById(R.id.fragment_my_games_recyclerview);
-        final GamesListAdapter adapter = new GamesListAdapter(this.getContext(),this);
+        final GamesListAdapter adapter = new GamesListAdapter(this.getContext(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 

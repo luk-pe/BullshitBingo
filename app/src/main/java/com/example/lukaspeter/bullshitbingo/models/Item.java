@@ -21,7 +21,7 @@ public class Item {
     @ColumnInfo(name = "template")
     private int template;
 
-    public Item (int id, String name, int template){
+    public Item(int id, String name, int template) {
         this.id = id;
         this.name = name;
         this.template = template;

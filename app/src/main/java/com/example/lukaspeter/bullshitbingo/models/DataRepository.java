@@ -18,7 +18,7 @@ public class DataRepository {
     private GamelogDao mGamelogDao;
 
 
-    public DataRepository(Application application){
+    public DataRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mTemplateDao = db.templateDao();
         mItemDao = db.itemDao();
@@ -27,7 +27,7 @@ public class DataRepository {
     }
 
     /**
-     *      TEMPLATE METHODS
+     * TEMPLATE METHODS
      */
 
     public Template getTemplateById(int id) {
@@ -40,7 +40,7 @@ public class DataRepository {
         return null;
     }
 
-    public LiveData<List<Template>> getAllTemplates(){
+    public LiveData<List<Template>> getAllTemplates() {
         try {
             return (LiveData<List<Template>>) new SelectAsyncTask(mTemplateDao).execute(0).get();
         } catch (ExecutionException | InterruptedException e) {
@@ -50,31 +50,30 @@ public class DataRepository {
         return null;
     }
 
-    public long insertTemplate (Template template){
+    public long insertTemplate(Template template) {
         long id;
-        try{
+        try {
             id = new InsertAsyncTask(mTemplateDao).execute(template).get();
-        } catch (ExecutionException ex){
+        } catch (ExecutionException ex) {
             id = 0;
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             id = 0;
         }
         return id;
     }
 
     /**
-     *      ITEM METHODS
+     * ITEM METHODS
      */
 
-    public void insertItem (Item item) {
+    public void insertItem(Item item) {
         new InsertAsyncTask(mItemDao).execute(item);
     }
 
-    public LiveData<List<Item>> getTemplateItems(int templateId){
+    public LiveData<List<Item>> getTemplateItems(int templateId) {
         try {
             return (LiveData<List<Item>>) new SelectAsyncTask(mItemDao).execute(templateId).get();
-        }
-        catch (ExecutionException | InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
         return null;
@@ -86,30 +85,30 @@ public class DataRepository {
     }
 
     /**
-     *      GAME METHODS
+     * GAME METHODS
      */
 
-    public void  insertGame (Game game) {
+    public void insertGame(Game game) {
         new InsertAsyncTask(mGameDao).execute(game);
     }
 
-    public void updateGame (Game game) {
+    public void updateGame(Game game) {
         new UpdateAsyncTask(mGameDao).execute(game);
     }
 
-    public void deleteGame (Game game) {
+    public void deleteGame(Game game) {
         new DeleteAsyncTask(mGameDao).execute(game);
     }
 
     /**
-     *      GAMELOG METHODS
+     * GAMELOG METHODS
      */
 
-    public void insertGamelog (Gamelog gamelog){
+    public void insertGamelog(Gamelog gamelog) {
         new InsertAsyncTask(mGamelogDao).execute(gamelog);
     }
 
-    public LiveData<List<Gamelog>>  getGameStatus (int gameId){
+    public LiveData<List<Gamelog>> getGameStatus(int gameId) {
         try {
             return (LiveData<List<Gamelog>>) new SelectAsyncTask(mGamelogDao).execute(gameId).get();
         } catch (ExecutionException | InterruptedException e) {

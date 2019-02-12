@@ -2,7 +2,6 @@ package com.example.lukaspeter.bullshitbingo.fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +20,7 @@ import java.util.List;
 
 public class BrowseFragment extends Fragment {
     private TemplateViewModel mTemplateViewModel;
+
     public static BrowseFragment newInstance() {
         BrowseFragment fragment = new BrowseFragment();
         //Bundle args = new Bundle();
@@ -39,10 +39,11 @@ public class BrowseFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_browse, container, false);
         return view;
     }
+
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState ){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         RecyclerView recyclerView = this.getActivity().findViewById(R.id.recyclerview);
-        final TemplateListAdapter adapter = new TemplateListAdapter(this.getContext(),null);
+        final TemplateListAdapter adapter = new TemplateListAdapter(this.getContext(), null);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 

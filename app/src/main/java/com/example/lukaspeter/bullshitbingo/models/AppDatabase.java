@@ -17,45 +17,51 @@ import java.util.Date;
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     public abstract GameDao gameDao();
+
     public abstract GamelogDao gamelogDao();
+
     public abstract ItemDao itemDao();
+
     public abstract TemplateDao templateDao();
 
     private static volatile AppDatabase INSTANCE;
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
-        public void onOpen(@NonNull SupportSQLiteDatabase db){
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
             new PopulateDbAsync(INSTANCE).execute();
         }
     };
 
-    static AppDatabase getDatabase(final Context context){
-        if (INSTANCE ==  null){
-            synchronized (AppDatabase.class){
-                if (INSTANCE == null){
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),AppDatabase.class, "bullshit-bingo-database").addCallback(sRoomDatabaseCallback).build();
+    static AppDatabase getDatabase(final Context context) {
+        if (INSTANCE == null) {
+            synchronized (AppDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "bullshit-bingo-database").addCallback(sRoomDatabaseCallback).build();
                 }
             }
         }
         return INSTANCE;
     }
+
     //Create Test Data
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
         private final TemplateDao templateDao;
         private final ItemDao itemDao;
+
         PopulateDbAsync(AppDatabase db) {
             templateDao = db.templateDao();
-            itemDao=db.itemDao();
+            itemDao = db.itemDao();
         }
+
         @Override
-        protected Void doInBackground(final Void... params){
+        protected Void doInBackground(final Void... params) {
             itemDao.deleteAllItems();
             //templateDao.deleteAllTemplates();
             Template template = new Template("Dinge die Michi sagt", "Lukas", false, new Date());
             long tid = templateDao.insertTemplate(template);
-           // template = new Template("Autos die von Lüdin gerammt werden", "Lukas", false, new Date());
+            // template = new Template("Autos die von Lüdin gerammt werden", "Lukas", false, new Date());
             //templateDao.insertTemplate(template);
             Item item = new Item(1, "Du hast die Kontrolle über dein Leben verloren", (int) tid);
             itemDao.insertItem(item);

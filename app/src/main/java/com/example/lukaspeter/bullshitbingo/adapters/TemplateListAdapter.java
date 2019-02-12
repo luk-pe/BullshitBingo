@@ -18,19 +18,20 @@ public class TemplateListAdapter extends RecyclerView.Adapter<TemplateListAdapte
     private List<Template> mTemplates;
     private OnClickTemplateListListener mListener;
 
-    public TemplateListAdapter(Context context, OnClickTemplateListListener listener){
+    public TemplateListAdapter(Context context, OnClickTemplateListListener listener) {
         mInflater = LayoutInflater.from(context);
         mListener = listener;
     }
 
     @Override
-    public TemplateViewHolder onCreateViewHolder(ViewGroup parent, int ViewType){
+    public TemplateViewHolder onCreateViewHolder(ViewGroup parent, int ViewType) {
         View templateView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
         return new TemplateViewHolder(templateView);
     }
+
     @Override
-    public void onBindViewHolder(TemplateViewHolder holder, int position){
-        if(mTemplates!=null){
+    public void onBindViewHolder(TemplateViewHolder holder, int position) {
+        if (mTemplates != null) {
             final Template currentTemplate = mTemplates.get(position);
 
             holder.templateItemView.setText(currentTemplate.getName());
@@ -46,24 +47,24 @@ public class TemplateListAdapter extends RecyclerView.Adapter<TemplateListAdapte
         }
     }
 
-    public void setTemplates(List<Template> templates){
+    public void setTemplates(List<Template> templates) {
         mTemplates = templates;
         notifyDataSetChanged();
     }
 
     @Override
-    public int getItemCount(){
-        if(mTemplates != null){
+    public int getItemCount() {
+        if (mTemplates != null) {
             return mTemplates.size();
-        }else{
+        } else {
             return 0;
         }
     }
 
-    class TemplateViewHolder extends RecyclerView.ViewHolder{
+    class TemplateViewHolder extends RecyclerView.ViewHolder {
         private final TextView templateItemView;
 
-        private TemplateViewHolder (View itemView){
+        private TemplateViewHolder(View itemView) {
             super(itemView);
             templateItemView = itemView.findViewById(R.id.textView);
         }

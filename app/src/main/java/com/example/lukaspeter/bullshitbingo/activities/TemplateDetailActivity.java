@@ -37,7 +37,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
 
         // Load Template ID from Intent
         Intent mIntent = getIntent();
-        final int templateId = mIntent.getIntExtra("template_id",0); //TODO: Bug template ID wird in intend korrekt überegben aber offensichtlich hier nicht korrekt ausgelesen: templateId = 0
+        final int templateId = mIntent.getIntExtra("template_id", 0); //TODO: Bug template ID wird in intend korrekt überegben aber offensichtlich hier nicht korrekt ausgelesen: templateId = 0
 
         mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
         mTemplate = mTemplateViewModel.getTemplateById(templateId);
@@ -55,7 +55,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
 
     private void initGridViewAdapter() {
         final GridView gridView = findViewById(R.id.template_detail_grid_view);
-        final GameGridViewAdapter adapter = new GameGridViewAdapter(tempItems,this,this);
+        final GameGridViewAdapter adapter = new GameGridViewAdapter(tempItems, this, this);
         gridView.setAdapter(adapter);
 
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
@@ -63,7 +63,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
             @Override
             public void onChanged(@Nullable List<Item> items) {
                 for (Item i : items) {
-                    tempItems.add(new TempItem(i.getId(),i.getName(),false));
+                    tempItems.add(new TempItem(i.getId(), i.getName(), false));
                 }
                 adapter.setItems(tempItems);
             }

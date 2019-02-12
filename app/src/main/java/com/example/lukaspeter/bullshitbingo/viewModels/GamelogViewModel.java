@@ -12,16 +12,16 @@ import java.util.List;
 public class GamelogViewModel extends AndroidViewModel {
     private DataRepository mDataRepository;
 
-    public GamelogViewModel (Application application){
+    public GamelogViewModel(Application application) {
         super(application);
         mDataRepository = new DataRepository(application);
     }
 
-    public void insertGamelog (Gamelog gamelog){
+    public void insertGamelog(Gamelog gamelog) {
         mDataRepository.insertGamelog(gamelog);
     }
 
-    public LiveData<List<Gamelog>> getGameStatus (int gameId){
+    public LiveData<List<Gamelog>> getGameStatus(int gameId) {
         LiveData<List<Gamelog>> mGamelogEntries = mDataRepository.getGameStatus(gameId);
         return mGamelogEntries;
     }

@@ -11,33 +11,28 @@ public class SelectAsyncTask extends AsyncTask<Integer, Void, Object> {
     private ItemDao itemDao;
     private GamelogDao gamelogDao;
 
-    public SelectAsyncTask(Object dao){
+    public SelectAsyncTask(Object dao) {
 
         if (dao instanceof TemplateDao) {
             templateDao = (TemplateDao) dao;
-        }
-        else if (dao instanceof ItemDao) {
+        } else if (dao instanceof ItemDao) {
             itemDao = (ItemDao) dao;
-        }
-        else if (dao instanceof GamelogDao) {
+        } else if (dao instanceof GamelogDao) {
             gamelogDao = (GamelogDao) dao;
         }
     }
 
     @Override
-    protected Object doInBackground(final Integer... params){
+    protected Object doInBackground(final Integer... params) {
 
         if (templateDao != null) {
-            if (params[0] != 0) return templateDao.templateById( params[0]);
+            if (params[0] != 0) return templateDao.templateById(params[0]);
             else return templateDao.getAllTemplates();
-        }
-        else if (itemDao != null) {
-            return itemDao.getTemplateItems( params[0]);
-        }
-        else if (gamelogDao != null) {
-            return gamelogDao.getGameStatus( params[0]);
-        }
-        else {
+        } else if (itemDao != null) {
+            return itemDao.getTemplateItems(params[0]);
+        } else if (gamelogDao != null) {
+            return gamelogDao.getGameStatus(params[0]);
+        } else {
             return null;
         }
     }

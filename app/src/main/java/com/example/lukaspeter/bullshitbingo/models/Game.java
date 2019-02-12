@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+
 import java.util.Date;
 
 
@@ -17,7 +18,8 @@ import java.util.Date;
 public class Game {
 
     @ColumnInfo(name = "id")
-    private @PrimaryKey(autoGenerate = true) int id;
+    private @PrimaryKey(autoGenerate = true)
+    int id;
 
     @ColumnInfo(name = "startedDate")
     @NonNull
@@ -61,7 +63,9 @@ public class Game {
         this.finished = finished;
     }
 
-    public boolean isFinished() { return finished != null; }
+    public boolean isFinished() {
+        return finished != null;
+    }
 
     public int getTemplate() {
         return template;

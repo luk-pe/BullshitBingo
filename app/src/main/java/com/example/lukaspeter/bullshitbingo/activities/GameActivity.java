@@ -3,9 +3,9 @@ package com.example.lukaspeter.bullshitbingo.activities;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -23,8 +23,6 @@ import com.example.lukaspeter.bullshitbingo.viewModels.ItemViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class GameActivity extends AppCompatActivity implements GameGridViewAdapter.OnClickGridViewItemListener {
@@ -43,7 +41,7 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
 
         // Load Template ID from Intent
         Intent mIntent = getIntent();
-        final int templateId = mIntent.getIntExtra("game_id",0);
+        final int templateId = mIntent.getIntExtra("game_id", 0);
 
         // TODO Change here from Template to Game View Model!
         mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
@@ -87,7 +85,7 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
 
     private void initGridViewAdapter() {
         final GridView gridView = (GridView) findViewById(R.id.game_grid_view);
-        final GameGridViewAdapter adapter = new GameGridViewAdapter(tempItems,this,this);
+        final GameGridViewAdapter adapter = new GameGridViewAdapter(tempItems, this, this);
         gridView.setAdapter(adapter);
 
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
@@ -103,10 +101,10 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
                 // TODO Game nicht neu -> Item positions als Text auslesen
                 String positions = "2;1;3;4;5;6;7;8;9;10;11;12;13;14;15;16"; // Example
                 String[] arrayOfPos = positions.split(";");
-                for (int i=0;i<arrayOfPos.length;i++) {
+                for (int i = 0; i < arrayOfPos.length; i++) {
                     for (Item item : items) {
-                        if (item.getId() == Integer.valueOf(arrayOfPos[i])){
-                            tempItems.add(new TempItem(item.getId(),item.getName(),false));
+                        if (item.getId() == Integer.valueOf(arrayOfPos[i])) {
+                            tempItems.add(new TempItem(item.getId(), item.getName(), false));
                         }
                     }
                 }
@@ -148,22 +146,26 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
     private boolean isBingo() {
 
         // Vertical
-        for (int i=0;i<4;i++) {
-            if (tempItems.get(i).isChecked() && tempItems.get(i+4).isChecked() && tempItems.get(i+8).isChecked() && tempItems.get(i+12).isChecked()) return true;
+        for (int i = 0; i < 4; i++) {
+            if (tempItems.get(i).isChecked() && tempItems.get(i + 4).isChecked() && tempItems.get(i + 8).isChecked() && tempItems.get(i + 12).isChecked())
+                return true;
         }
         // Horizontal
-        for (int i=0;i<13;i+=4) {
-            if (tempItems.get(i).isChecked() && tempItems.get(i+1).isChecked() && tempItems.get(i+2).isChecked() && tempItems.get(i+3).isChecked()) return true;
+        for (int i = 0; i < 13; i += 4) {
+            if (tempItems.get(i).isChecked() && tempItems.get(i + 1).isChecked() && tempItems.get(i + 2).isChecked() && tempItems.get(i + 3).isChecked())
+                return true;
         }
         // Cross
-        if (tempItems.get(0).isChecked() && tempItems.get(5).isChecked() && tempItems.get(10).isChecked() && tempItems.get(15).isChecked()) return true;
-        if (tempItems.get(3).isChecked() && tempItems.get(6).isChecked() && tempItems.get(9).isChecked() && tempItems.get(12).isChecked()) return true;
+        if (tempItems.get(0).isChecked() && tempItems.get(5).isChecked() && tempItems.get(10).isChecked() && tempItems.get(15).isChecked())
+            return true;
+        if (tempItems.get(3).isChecked() && tempItems.get(6).isChecked() && tempItems.get(9).isChecked() && tempItems.get(12).isChecked())
+            return true;
 
         return false;
     }
 
     private void onCallBingoClick() {
         // TODO Save game in DB and go back to Menu
-        Toast.makeText(this,"CONGRATULATIONS!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "CONGRATULATIONS!", Toast.LENGTH_SHORT).show();
     }
 }
