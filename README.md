@@ -9,21 +9,23 @@ MUST-HAVEs:
   - LogView
   - Listen lokaler und globaler Templates
  
- - mindestens 2 Ebenen der Navigation ✅
+- mindestens 2 Ebenen der Navigation ✅
   - Bottom Navigation Bar -> Tab Layout -> (Template Preview ->) GameView
+ 
   
- - Liste mit Recycler View ✅
+- Liste mit Recycler View ✅
   - Listen lokaler und globaler Templates
-  
- - Daten in SQLite mit RoomVerwalten ✅
+
+- Daten in SQLite mit RoomVerwalten ✅
  
- - Bearbeiten von Items/Templates o.ä. ? ⚠️
-   -> Template -> Game ❗️Daten Inkonsistenz❗️
+- Bearbeiten von Items/Templates o.ä. ? ⚠️
+   - -> Template -> Game ❗️Daten Inkonsistenz❗️
  
- - einheitliches Design ✅
+- einheitliches Design ✅
  
- - Android Best Practice ✅
+- Android Best Practice ✅
   - https://developer.android.com/jetpack/docs/guide 
+  - 
 
 NICE-TO-HAVES:
 
