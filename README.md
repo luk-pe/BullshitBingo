@@ -2,7 +2,9 @@
 WWI16B-SE, App Entwicklung, Michael Blum und Lukas Peter
 
 Umgesetzte Anforderungen:
+------------
 MUST-HAVEs:
+----------
 
 - mindestens 3 nicht triviale Screens ✅
   - GameView
@@ -27,8 +29,10 @@ MUST-HAVEs:
   - https://developer.android.com/jetpack/docs/guide 
   - 
 
-NICE-TO-HAVES:
+------------------
 
+NICE-TO-HAVES:
+--------------
 - Background Tasks ✅ 
   - DB Zugriffe über AsyncTask
   
@@ -37,6 +41,8 @@ NICE-TO-HAVES:
   
   -----------------
  Optional 
+----------
+- Share Funktion 
   
 - Benutzer Konzept inkl. Authentifizierung❓
 
