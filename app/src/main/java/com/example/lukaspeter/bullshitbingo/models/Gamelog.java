@@ -11,7 +11,8 @@ import java.util.Date;
         parentColumns = "id",
         childColumns = "game",
         //TODO: check onDelete
-        onDelete = ForeignKey.CASCADE), primaryKeys = {"checked", "game", "item"})
+        onDelete = ForeignKey.CASCADE), primaryKeys = {"date", "game", "item"})
+
 public class Gamelog {
     @ColumnInfo(name = "game")
     private int game;
@@ -19,11 +20,13 @@ public class Gamelog {
     @ColumnInfo(name = "item")
     private int item;
 
-    @ColumnInfo(name = "checked")
-    //@NonNull is required but I don't know why
+    @ColumnInfo(name = "date")
+    //@NonNull is required here but I don't know why
     @NonNull
-    private Date checked;
-    //TODO log if check was set or deleted?
+    private Date date;
+
+    @ColumnInfo(name = "checked")
+    private boolean checked;
 
 
     public int getGame() {
@@ -42,11 +45,20 @@ public class Gamelog {
         this.item = item;
     }
 
-    public Date getChecked() {
+    @NonNull
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(@NonNull Date date) {
+        this.date = date;
+    }
+
+    public boolean isChecked() {
         return checked;
     }
 
-    public void setChecked(Date checked) {
+    public void setChecked(boolean checked) {
         this.checked = checked;
     }
 }

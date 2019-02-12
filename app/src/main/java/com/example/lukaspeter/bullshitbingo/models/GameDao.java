@@ -19,11 +19,14 @@ public interface GameDao {
 
     //TODO: check onConflict
     @Insert(onConflict = REPLACE)
-    void insertGames(Game ... games);
+    void insertGame(Game game);
 
     @Update
-    void updateGames(Game ... games);
+    void updateGame(Game game);
 
     @Delete
-    void deleteGames(Game ... games);
+    void deleteGame(Game game);
+
+
+
 }

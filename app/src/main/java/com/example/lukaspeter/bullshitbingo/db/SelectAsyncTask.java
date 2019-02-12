@@ -2,12 +2,14 @@ package com.example.lukaspeter.bullshitbingo.db;
 
 import android.os.AsyncTask;
 
+import com.example.lukaspeter.bullshitbingo.models.GamelogDao;
 import com.example.lukaspeter.bullshitbingo.models.ItemDao;
 import com.example.lukaspeter.bullshitbingo.models.TemplateDao;
 
 public class SelectAsyncTask extends AsyncTask<Integer, Void, Object> {
     private TemplateDao templateDao;
     private ItemDao itemDao;
+    private GamelogDao gamelogDao;
 
     public SelectAsyncTask(Object dao){
 
@@ -17,6 +19,9 @@ public class SelectAsyncTask extends AsyncTask<Integer, Void, Object> {
         else if (dao instanceof ItemDao) {
             itemDao = (ItemDao) dao;
         }
+        else if (dao instanceof GamelogDao) {
+            gamelogDao = (GamelogDao) dao;
+        }
     }
 
     @Override
@@ -25,7 +30,14 @@ public class SelectAsyncTask extends AsyncTask<Integer, Void, Object> {
         if (templateDao != null) {
             if (params[0] != 0) return templateDao.templateById( params[0]);
             else return templateDao.getAllTemplates();
-        } else {
+        }
+        else if (itemDao != null) {
+            return itemDao.getTemplateItems( params[0]);
+        }
+        else if (gamelogDao != null) {
+            return gamelogDao.getGameStatus( params[0]);
+        }
+        else {
             return null;
         }
     }

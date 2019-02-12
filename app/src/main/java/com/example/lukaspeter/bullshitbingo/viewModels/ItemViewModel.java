@@ -11,14 +11,13 @@ import java.util.List;
 
 public class ItemViewModel extends AndroidViewModel {
     private DataRepository mDataRepository;
-    private LiveData<List<Item>> mTemplateItems;
 
     public ItemViewModel(Application application){
         super(application);
         mDataRepository = new DataRepository(application);
     }
     public LiveData<List<Item>> getTemplateItems(int templateId){
-        mTemplateItems = mDataRepository.getTemplateItems(templateId);
+        LiveData<List<Item>> mTemplateItems = mDataRepository.getTemplateItems(templateId);
         return mTemplateItems;
     }
     public void insertItem(Item item){
