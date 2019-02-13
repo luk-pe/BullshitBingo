@@ -14,8 +14,9 @@ public class GameViewModel extends AndroidViewModel {
         mDataRepository = new DataRepository(application);
     }
 
-    public void insertGame(Game game) {
-        mDataRepository.insertGame(game);
+    public long insertGame(Game game) {
+        long id = mDataRepository.insertGame(game);
+        return id;
     }
 
     public void updateGame(Game game) {
@@ -24,5 +25,9 @@ public class GameViewModel extends AndroidViewModel {
 
     public void deleteGame(Game game) {
         mDataRepository.deleteGame(game);
+    }
+
+    public Game getGameById(int id) {
+        return mDataRepository.getGameById(id);
     }
 }

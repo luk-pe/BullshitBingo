@@ -88,8 +88,17 @@ public class DataRepository {
      * GAME METHODS
      */
 
-    public void insertGame(Game game) {
-        new InsertAsyncTask(mGameDao).execute(game);
+    public long insertGame(Game game) {
+        long id;
+        try {
+            id = new InsertAsyncTask(mGameDao).execute(game).get();
+        } catch (ExecutionException ex) {
+            id = 0;
+        } catch (InterruptedException e) {
+            id = 0;
+        }
+        return id;
+
     }
 
     public void updateGame(Game game) {
@@ -98,6 +107,16 @@ public class DataRepository {
 
     public void deleteGame(Game game) {
         new DeleteAsyncTask(mGameDao).execute(game);
+    }
+
+    public Game getGameById (int id) {
+        try {
+            return (Game) new SelectAsyncTask(mGameDao).execute(id).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**

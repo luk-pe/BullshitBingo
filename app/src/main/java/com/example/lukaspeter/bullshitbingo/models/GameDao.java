@@ -19,13 +19,16 @@ public interface GameDao {
 
     //TODO: check onConflict
     @Insert(onConflict = REPLACE)
-    void insertGame(Game game);
+    long insertGame(Game game);
 
     @Update
     void updateGame(Game game);
 
     @Delete
     void deleteGame(Game game);
+
+    @Query("SELECT * FROM game WHERE id = :id")
+    Game gameById(int id);
 
 
 }

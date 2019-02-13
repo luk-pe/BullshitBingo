@@ -17,8 +17,10 @@ import android.widget.Toast;
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.adapters.GameGridViewAdapter;
 import com.example.lukaspeter.bullshitbingo.helpers.TempItem;
+import com.example.lukaspeter.bullshitbingo.models.Game;
 import com.example.lukaspeter.bullshitbingo.models.Item;
 import com.example.lukaspeter.bullshitbingo.models.Template;
+import com.example.lukaspeter.bullshitbingo.viewModels.GameViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.ItemViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
 
@@ -30,7 +32,9 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
     private Button btnCallBingo;
     private ItemViewModel mItemViewModel;
     private List<TempItem> tempItems = new ArrayList<>();
+    private Game mGame;
     private Template mTemplate;
+    private GameViewModel mGameViewModel;
     private TemplateViewModel mTemplateViewModel;
 
 
@@ -41,18 +45,22 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
 
         // Load Template ID from Intent
         Intent mIntent = getIntent();
-        final int templateId = mIntent.getIntExtra("game_id", 0);
+        final int gameId = mIntent.getIntExtra("game_id", 0);
 
-        // TODO Change here from Template to Game View Model!
-        mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
-        mTemplate = mTemplateViewModel.getTemplateById(templateId);
+        mGameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
+        mGame = mGameViewModel.getGameById(gameId);
 
-        // Close activity if Template not found
-        if (mTemplate == null) {
+        // Close activity if Game not found
+        if (mGame == null) {
             GameActivity.this.finish();
         }
 
-        // TODO Get Game name
+        // Get Source Template for Game
+        int mTemplateId = mGame.getTemplate();
+        mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
+        mTemplate = mTemplateViewModel.getTemplateById(mTemplateId);
+
+        // Get Title name from Template
         setTitle(mTemplate.getName());
 
         initBingoButton();
@@ -84,7 +92,7 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
     }
 
     private void initGridViewAdapter() {
-        final GridView gridView = (GridView) findViewById(R.id.game_grid_view);
+        final GridView gridView = findViewById(R.id.game_grid_view);
         final GameGridViewAdapter adapter = new GameGridViewAdapter(tempItems, this, this);
         gridView.setAdapter(adapter);
 
@@ -92,14 +100,8 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
         mItemViewModel.getTemplateItems(mTemplate.getId()).observe(this, new Observer<List<Item>>() {
             @Override
             public void onChanged(@Nullable List<Item> items) {
-                // TODO wenn neues spiel -> shuffle ; sonst -> positions lesen
-                //for (Item i : items) {
-                //    tempItems.add(new TempItem(i.getId(),i.getName(),false));
-                //}
-                //Collections.shuffle(tempItems);
-
-                // TODO Game nicht neu -> Item positions als Text auslesen
-                String positions = "2;1;3;4;5;6;7;8;9;10;11;12;13;14;15;16"; // Example
+                //get Item positions from String
+                String positions = mGame.getItemPositions();
                 String[] arrayOfPos = positions.split(";");
                 for (int i = 0; i < arrayOfPos.length; i++) {
                     for (Item item : items) {
@@ -158,10 +160,8 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
         // Cross
         if (tempItems.get(0).isChecked() && tempItems.get(5).isChecked() && tempItems.get(10).isChecked() && tempItems.get(15).isChecked())
             return true;
-        if (tempItems.get(3).isChecked() && tempItems.get(6).isChecked() && tempItems.get(9).isChecked() && tempItems.get(12).isChecked())
-            return true;
+        return tempItems.get(3).isChecked() && tempItems.get(6).isChecked() && tempItems.get(9).isChecked() && tempItems.get(12).isChecked();
 
-        return false;
     }
 
     private void onCallBingoClick() {

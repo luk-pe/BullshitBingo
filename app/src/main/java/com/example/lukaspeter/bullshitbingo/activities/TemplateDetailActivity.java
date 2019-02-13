@@ -13,12 +13,15 @@ import android.widget.GridView;
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.adapters.GameGridViewAdapter;
 import com.example.lukaspeter.bullshitbingo.helpers.TempItem;
+import com.example.lukaspeter.bullshitbingo.models.Game;
 import com.example.lukaspeter.bullshitbingo.models.Item;
 import com.example.lukaspeter.bullshitbingo.models.Template;
+import com.example.lukaspeter.bullshitbingo.viewModels.GameViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.ItemViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TemplateDetailActivity extends AppCompatActivity implements GameGridViewAdapter.OnClickGridViewItemListener {
@@ -28,6 +31,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
     private List<TempItem> tempItems = new ArrayList<>();
     private Template mTemplate;
     private TemplateViewModel mTemplateViewModel;
+    private GameViewModel mGameViewModel;
 
 
     @Override
@@ -37,7 +41,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
 
         // Load Template ID from Intent
         Intent mIntent = getIntent();
-        final int templateId = mIntent.getIntExtra("template_id", 0); //TODO: Bug template ID wird in intend korrekt überegben aber offensichtlich hier nicht korrekt ausgelesen: templateId = 0
+        final int templateId = mIntent.getIntExtra("template_id", 0);
 
         mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
         mTemplate = mTemplateViewModel.getTemplateById(templateId);
@@ -82,9 +86,19 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
     }
 
     private void onBtnStartClick() {
-        // TODO Create game and Push game id to GameActivity
+        // Create game and push game id to GameActivity
+        int templateId = mTemplate.getId();
+        Game game = new Game(new Date(), templateId);
+        mGameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
+        long gameId = mGameViewModel.insertGame(game);
+
+        // Close activity if gameId = 0 -> game wasn't created -> exception in dataRepository
+        if (gameId == 0) {
+            TemplateDetailActivity.this.finish();
+        }
+
         Intent mIntent = new Intent(this, GameActivity.class);
-        mIntent.putExtra("game_id", mTemplate.getId()); // TODO change to id of game
+        mIntent.putExtra("game_id", (int) gameId);
         startActivity(mIntent);
     }
 

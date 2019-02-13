@@ -39,7 +39,7 @@ public class InsertAsyncTask extends AsyncTask<Object, Void, Long> {
         } else if (params[0] instanceof Item) {
             itemDao.insertItem((Item) params[0]);
         } else if (params[0] instanceof Game) {
-            gameDao.insertGame((Game) params[0]);
+            id = gameDao.insertGame((Game) params[0]);
         } else if (params[0] instanceof Gamelog) {
             gamelogDao.insertGamelog((Gamelog) params[0]);
         }
