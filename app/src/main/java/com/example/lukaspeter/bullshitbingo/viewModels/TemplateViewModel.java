@@ -5,6 +5,8 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
 import com.example.lukaspeter.bullshitbingo.models.DataRepository;
+import com.example.lukaspeter.bullshitbingo.models.Item;
+import com.example.lukaspeter.bullshitbingo.models.RemoteTemplate;
 import com.example.lukaspeter.bullshitbingo.models.Template;
 
 import java.util.List;
@@ -27,8 +29,16 @@ public class TemplateViewModel extends AndroidViewModel {
         return mAllTemplates;
     }
 
+    public LiveData<List<RemoteTemplate>> getAllRemoteTemplates() {
+        return mDataRepository.getAllRemoteTemplates();
+    }
+
     public long insertTemplate(Template template) {
         long id = mDataRepository.insertTemplate(template);
         return id;
+    }
+
+    public LiveData<Boolean> uploadTemplate(Template template, List<Item> items, String description) {
+        return mDataRepository.uploadTemplate(template,items,description);
     }
 }

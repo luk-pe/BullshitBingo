@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/remote_template_detail_text_creator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/play"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/remote_template_detail_text_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/remote_template_detail_text_creator"
+        android:text="@string/play"/>
+
+    <GridView
+        android:id="@+id/remote_template_detail_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:numColumns="4"
+        android:stretchMode="spacingWidthUniform"
+        android:verticalSpacing="3dp" />
+
+    <Button
+        android:id="@+id/remote_template_detail_button_play"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/play"/>
+
+</RelativeLayout>

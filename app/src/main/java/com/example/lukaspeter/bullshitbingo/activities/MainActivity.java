@@ -13,6 +13,7 @@ import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.fragments.BrowseFragment;
 import com.example.lukaspeter.bullshitbingo.fragments.MyContentFragment;
 import com.example.lukaspeter.bullshitbingo.fragments.SearchFragment;
+import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Init firebase
+        FirebaseApp.initializeApp(getApplicationContext());
 
         // Start Browse Fragment onCreate
         if (savedInstanceState == null) {

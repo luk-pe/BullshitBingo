@@ -2,21 +2,35 @@ package com.example.lukaspeter.bullshitbingo.models;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.example.lukaspeter.bullshitbingo.db.DeleteAsyncTask;
 import com.example.lukaspeter.bullshitbingo.db.InsertAsyncTask;
 import com.example.lukaspeter.bullshitbingo.db.SelectAsyncTask;
 import com.example.lukaspeter.bullshitbingo.db.UpdateAsyncTask;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class DataRepository {
+
     private TemplateDao mTemplateDao;
     private ItemDao mItemDao;
     private GameDao mGameDao;
     private GamelogDao mGamelogDao;
 
+    private FirebaseDB firebaseDB;
 
     public DataRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -24,6 +38,8 @@ public class DataRepository {
         mItemDao = db.itemDao();
         mGameDao = db.gameDao();
         mGamelogDao = db.gamelogDao();
+
+        firebaseDB = FirebaseDB.getInstance();
     }
 
     /**
@@ -166,4 +182,20 @@ public class DataRepository {
         return false;
     }
 
+    /**
+     *  FIREBASE METHODS
+     */
+
+    public MutableLiveData<List<RemoteTemplate>> getAllRemoteTemplates() {
+        return firebaseDB.getAllTemplates();
+    }
+
+    public MutableLiveData<Boolean> uploadTemplate(Template t, List<Item> items, String description) {
+
+        ArrayList<String> itemList = new ArrayList<>();
+        for (Item item : items) itemList.add(item.getName());
+        RemoteTemplate template = new RemoteTemplate(null,t.getName(),t.getCreator(),description,0,t.getCreated(),itemList);
+
+        return firebaseDB.insertTemplate(template);
+    }
 }

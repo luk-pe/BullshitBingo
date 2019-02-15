@@ -11,9 +11,16 @@
     <string name="emptyInputFields">Please fill all input fields!</string>
     <string name="emptyFields">Empty Fields</string>
     <string name="ok">Ok!</string>
+    <string name="cancel">Cancel</string>
     <string name="tryAgain">Try Again!</string>
     <string name="templateNotCreated">Template has not been created!</string>
     <string name="bingo">BINGO!</string>
     <string name="question_start_game">Do you want to play a game with this template?</string>
     <string name="play">Play</string>
+    <string name="created_by">Created by</string>
+    <string name="make_public">Make Public</string>
+    <string name="success">Successful</string>
+    <string name="error">Error</string>
+    <string name="success_public">Template is now available online!</string>
+    <string name="error_public">Template upload was not successful!</string>
 </resources>

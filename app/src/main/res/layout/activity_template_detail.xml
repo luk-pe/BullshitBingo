@@ -15,14 +15,30 @@
         android:stretchMode="spacingWidthUniform"
         android:verticalSpacing="3dp" />
 
-    <Button
-        android:id="@+id/template_detail_button_bingo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="@string/play"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/template_detail_button_make_public"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="false"
+            android:layout_weight="0.5"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/make_public"
+            />
+
+        <Button
+            android:id="@+id/template_detail_button_play"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.5"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/play"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

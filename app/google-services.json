@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "588446935163",
+    "firebase_url": "https://bullshitbingo-4bdac.firebaseio.com",
+    "project_id": "bullshitbingo-4bdac",
+    "storage_bucket": "bullshitbingo-4bdac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588446935163:android:445ca3b477d4d4ad",
+        "android_client_info": {
+          "package_name": "com.example.lukaspeter.bullshitbingo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588446935163-cn3en78v1c878ufr7klq03mb818dkkkn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lukaspeter.bullshitbingo",
+            "certificate_hash": "08bae451c88b59527d1a65af581527ea977ab7e1"
+          }
+        },
+        {
+          "client_id": "588446935163-j8t18079885nirob8l94teoaton36sju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lukaspeter.bullshitbingo",
+            "certificate_hash": "3cbc143634d791bb3b6d6bd1b5a5914ee1ce1798"
+          }
+        },
+        {
+          "client_id": "588446935163-gm4gbf4c3dc7ip8ql9pjje6t4fkrersf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGFoTorLxsCGuzfSDugzhj4fKjaEyk5I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588446935163-gm4gbf4c3dc7ip8ql9pjje6t4fkrersf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
