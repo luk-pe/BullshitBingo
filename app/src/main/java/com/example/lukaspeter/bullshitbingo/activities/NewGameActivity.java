@@ -37,24 +37,24 @@ public class NewGameActivity extends AppCompatActivity {
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
         createTemplateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int[] inputFieldsIds = getInputFieldsIds();
-                boolean emptyFields = false;
+                int[] inputFieldsIds = getItemInputFieldsId();
+                boolean emptyRequiredFields = false;
                 //check if template name is filled
                 String templateNameString = templateNameInput.getText().toString();
                 if (templateNameString.trim().equals("")) {
-                    emptyFields = true;
+                    emptyRequiredFields = true;
                 } else {
                     //check if all items filled
                     for (int i = 0; i < inputFieldsIds.length; i++) {
                         EditText itemNameInput = findViewById(inputFieldsIds[i]);
                         if (itemNameInput.getText().toString().trim().equals("")) {
-                            emptyFields = true;
+                            emptyRequiredFields = true;
                             break;
                         }
                     }
                 }
                 // empty fields
-                if (emptyFields == true) {
+                if (emptyRequiredFields == true) {
                     AlertDialog.Builder builder;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         builder = new AlertDialog.Builder(NewGameActivity.this, android.R.style.Theme_Material_Dialog_Alert);
@@ -74,7 +74,7 @@ public class NewGameActivity extends AppCompatActivity {
                 }
                 // no empty fields
                 else {
-                    template = new Template(templateNameString, "User", true, new Date());
+                    template = new Template(templateNameString, "User", true, new Date(), "");
                     long tid = mTemplateViewModel.insertTemplate(template);
                     Log.d("Lukas", "tid: " + tid);
                     // check if tid == 0 -> template wasn't created -> exception in dataRepository
@@ -117,7 +117,7 @@ public class NewGameActivity extends AppCompatActivity {
 
     }
 
-    private int[] getInputFieldsIds() {
+    private int[] getItemInputFieldsId() {
         int[] inputFieldIds = new int[16];
         for (int i = 0; i < 16; i++) {
             int j = i + 1;

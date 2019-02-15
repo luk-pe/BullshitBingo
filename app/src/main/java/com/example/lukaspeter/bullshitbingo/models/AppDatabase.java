@@ -11,8 +11,6 @@ import android.support.annotation.NonNull;
 
 import com.example.lukaspeter.bullshitbingo.helpers.Converters;
 
-import java.util.Date;
-
 @Database(entities = {Game.class, Gamelog.class, Item.class, Template.class}, version = 1)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {

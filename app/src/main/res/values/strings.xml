@@ -23,4 +23,5 @@
     <string name="error">Error</string>
     <string name="success_public">Template is now available online!</string>
     <string name="error_public">Template upload was not successful!</string>
+    <string name="created_by">Created by</string>
 </resources>
