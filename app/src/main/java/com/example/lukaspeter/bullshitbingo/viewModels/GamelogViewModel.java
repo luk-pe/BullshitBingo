@@ -2,7 +2,6 @@ package com.example.lukaspeter.bullshitbingo.viewModels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
 
 import com.example.lukaspeter.bullshitbingo.models.DataRepository;
 import com.example.lukaspeter.bullshitbingo.models.Gamelog;
@@ -21,8 +20,12 @@ public class GamelogViewModel extends AndroidViewModel {
         mDataRepository.insertGamelog(gamelog);
     }
 
-    public LiveData<List<Gamelog>> getGameStatus(int gameId) {
-        LiveData<List<Gamelog>> mGamelogEntries = mDataRepository.getGameStatus(gameId);
+    public List<Gamelog> getGameStatus(int gameId) {
+        List<Gamelog> mGamelogEntries = mDataRepository.getGameStatus(gameId);
         return mGamelogEntries;
+    }
+    public boolean getItemStatus(int gameId, int itemId) {
+        boolean mChecked = mDataRepository.getItemStatus(gameId, itemId);
+        return mChecked;
     }
 }

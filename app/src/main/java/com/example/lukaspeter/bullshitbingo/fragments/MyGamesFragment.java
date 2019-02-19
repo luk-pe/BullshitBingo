@@ -1,7 +1,10 @@
 package com.example.lukaspeter.bullshitbingo.fragments;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +16,9 @@ import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.activities.GameActivity;
 import com.example.lukaspeter.bullshitbingo.adapters.GamesListAdapter;
 import com.example.lukaspeter.bullshitbingo.models.Game;
+import com.example.lukaspeter.bullshitbingo.viewModels.GameViewModel;
+
+import java.util.List;
 
 public class MyGamesFragment extends Fragment implements GamesListAdapter.OnClickGamesListListener {
 
@@ -42,16 +48,16 @@ public class MyGamesFragment extends Fragment implements GamesListAdapter.OnClic
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         // TODO: Change to GameViewModel and pass games to adapter
-        /*
-        mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
-        mTemplateViewModel.getAllTemplates().observe(this, new Observer<List<Template>>() {
+
+        GameViewModel mGameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
+        mGameViewModel.getAllGames().observe(this, new Observer<List<Game>>() {
             @Override
-            public void onChanged(@Nullable List<Template> templates) {
-                // Update the cached copy of the templates in the adapter.
-                adapter.setTemplates(templates);
+            public void onChanged(@Nullable List<Game> games) {
+                // Update the cached copy of the games in the adapter.
+                adapter.setGames(games);
             }
         });
-        */
+
     }
 
     @Override

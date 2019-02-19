@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -18,9 +17,11 @@ import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.adapters.GameGridViewAdapter;
 import com.example.lukaspeter.bullshitbingo.helpers.TempItem;
 import com.example.lukaspeter.bullshitbingo.models.Game;
+import com.example.lukaspeter.bullshitbingo.models.Gamelog;
 import com.example.lukaspeter.bullshitbingo.models.Item;
 import com.example.lukaspeter.bullshitbingo.models.Template;
 import com.example.lukaspeter.bullshitbingo.viewModels.GameViewModel;
+import com.example.lukaspeter.bullshitbingo.viewModels.GamelogViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.ItemViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
 
@@ -30,13 +31,13 @@ import java.util.List;
 public class GameActivity extends AppCompatActivity implements GameGridViewAdapter.OnClickGridViewItemListener {
 
     private Button btnCallBingo;
-    private ItemViewModel mItemViewModel;
     private List<TempItem> tempItems = new ArrayList<>();
     private Game mGame;
     private Template mTemplate;
     private GameViewModel mGameViewModel;
     private TemplateViewModel mTemplateViewModel;
-
+    private ItemViewModel mItemViewModel;
+    private GamelogViewModel mGamelogViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,27 +64,19 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
         // Get Title name from Template
         setTitle(mTemplate.getName());
 
+        mGamelogViewModel = ViewModelProviders.of(this).get(GamelogViewModel.class);
+
         initBingoButton();
         initGridViewAdapter();
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
-        // TODO Save Game state here in DB
-        Log.d("blumm", "Game paused");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // TODO Load Game state here from DB
-    }
-
-    @Override
     public void onClickGridViewItem(TempItem item) {
+
+        int gameId = mGame.getId();
+        int itemId = item.getId();
+        Gamelog gamelog = new Gamelog(gameId, itemId, !item.isChecked());
+        mGamelogViewModel.insertGamelog(gamelog);
 
         item.setChecked(!item.isChecked());
 
@@ -106,7 +99,8 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
                 for (int i = 0; i < arrayOfPos.length; i++) {
                     for (Item item : items) {
                         if (item.getId() == Integer.valueOf(arrayOfPos[i])) {
-                            tempItems.add(new TempItem(item.getId(), item.getName(), false));
+                            boolean checked = mGamelogViewModel.getItemStatus(mGame.getId(), item.getId());
+                            tempItems.add(new TempItem(item.getId(), item.getName(), checked));
                         }
                     }
                 }
@@ -126,6 +120,8 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
         setBtnCallBingoVisibility(false);
 
     }
+
+
 
     private void setBtnCallBingoVisibility(boolean visible) {
 

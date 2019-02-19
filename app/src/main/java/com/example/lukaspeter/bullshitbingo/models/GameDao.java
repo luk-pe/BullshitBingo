@@ -1,5 +1,6 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -29,6 +30,9 @@ public interface GameDao {
 
     @Query("SELECT * FROM game WHERE id = :id")
     Game gameById(int id);
+
+    @Query("SELECT * FROM game")
+    LiveData<List<Game>> getAllGames();
 
 
 }

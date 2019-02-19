@@ -34,7 +34,8 @@ public class GamesListAdapter extends RecyclerView.Adapter<GamesListAdapter.Game
         if (mGames != null) {
             final Game g = mGames.get(position);
 
-            holder.templateItemView.setText(g.getTemplate());
+            // TODO: set Text template name
+            holder.templateItemView.setText("Template title");
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -119,6 +119,16 @@ public class DataRepository {
         return null;
     }
 
+    public LiveData<List<Game>> getAllGames(){
+        try {
+            return (LiveData<List<Game>>) new SelectAsyncTask(mGameDao).execute(0).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     /**
      * GAMELOG METHODS
      */
@@ -127,13 +137,23 @@ public class DataRepository {
         new InsertAsyncTask(mGamelogDao).execute(gamelog);
     }
 
-    public LiveData<List<Gamelog>> getGameStatus(int gameId) {
+    public List<Gamelog> getGameStatus(int gameId) {
         try {
-            return (LiveData<List<Gamelog>>) new SelectAsyncTask(mGamelogDao).execute(gameId).get();
+            return (List<Gamelog>) new SelectAsyncTask(mGamelogDao).execute(gameId).get();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public  boolean getItemStatus (int gameId, int itemId){
+        try {
+            return (boolean) new SelectAsyncTask(mGamelogDao).execute(gameId, itemId).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        // if no entry found return checked = false
+        return false;
     }
 
 }

@@ -35,9 +35,11 @@ public class SelectAsyncTask extends AsyncTask<Integer, Void, Object> {
         } else if (itemDao != null) {
             return itemDao.getTemplateItems(params[0]);
         } else if (gameDao != null) {
-            return gameDao.gameById(params[0]);
+            if (params[0] != 0) return gameDao.gameById(params[0]);
+            else return gameDao.getAllGames();
         } else if (gamelogDao != null) {
-            return gamelogDao.getGameStatus(params[0]);
+            if(params[1] != 0) return gamelogDao.getItemStatus(params[0], params[1]);
+            else return gamelogDao.getGameStatus(params[0]);
         }else {
             return null;
         }

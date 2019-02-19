@@ -1,7 +1,6 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
 
-import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
@@ -17,6 +16,10 @@ public interface GamelogDao {
     @Insert(onConflict = IGNORE)
     void insertGamelog(Gamelog gamelog);
 
+    //TODO: check if method needed?
     @Query("SELECT * FROM Gamelog WHERE game = :game GROUP BY item ORDER BY date DESC")
-    LiveData<List<Gamelog>> getGameStatus(int game);
+    List<Gamelog> getGameStatus(int game);
+
+    @Query("SELECT checked FROM Gamelog WHERE item = :item AND game = :game GROUP BY item ORDER BY date DESC")
+    boolean getItemStatus(int game, int item);
 }

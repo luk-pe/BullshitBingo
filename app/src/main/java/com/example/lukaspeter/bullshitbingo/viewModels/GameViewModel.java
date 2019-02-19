@@ -2,9 +2,12 @@ package com.example.lukaspeter.bullshitbingo.viewModels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
 
 import com.example.lukaspeter.bullshitbingo.models.DataRepository;
 import com.example.lukaspeter.bullshitbingo.models.Game;
+
+import java.util.List;
 
 public class GameViewModel extends AndroidViewModel {
     private DataRepository mDataRepository;
@@ -29,5 +32,9 @@ public class GameViewModel extends AndroidViewModel {
 
     public Game getGameById(int id) {
         return mDataRepository.getGameById(id);
+    }
+
+    public LiveData<List<Game>> getAllGames(){
+        return mDataRepository.getAllGames();
     }
 }

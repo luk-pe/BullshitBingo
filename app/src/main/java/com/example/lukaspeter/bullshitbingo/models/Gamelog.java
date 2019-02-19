@@ -28,6 +28,13 @@ public class Gamelog {
     @ColumnInfo(name = "checked")
     private boolean checked;
 
+    public Gamelog(int game, int item, Boolean checked){
+        this.game = game;
+        this.item = item;
+        this.date = new Date();
+        this.checked = checked;
+    }
+
 
     public int getGame() {
         return game;
