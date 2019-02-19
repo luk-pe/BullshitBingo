@@ -9,13 +9,14 @@ import android.widget.TextView;
 
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.models.Game;
+import com.example.lukaspeter.bullshitbingo.models.GameWithTemplate;
 
 import java.util.List;
 
 public class GamesListAdapter extends RecyclerView.Adapter<GamesListAdapter.GameViewHolder> {
 
     private final LayoutInflater mInflater;
-    private List<Game> mGames;
+    private List<GameWithTemplate> mGames;
     private OnClickGamesListListener mListener;
 
     public GamesListAdapter(Context context, OnClickGamesListListener listener) {
@@ -32,14 +33,14 @@ public class GamesListAdapter extends RecyclerView.Adapter<GamesListAdapter.Game
     @Override
     public void onBindViewHolder(GameViewHolder holder, int position) {
         if (mGames != null) {
-            final Game g = mGames.get(position);
+            final GameWithTemplate g = mGames.get(position);
 
             // TODO: set Text template name
-            holder.templateItemView.setText("Template title");
+            holder.templateItemView.setText(g.getTemplate().getName());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mListener.onClickGamesListItem(g);
+                    mListener.onClickGamesListItem(g.getGame());
                     notifyDataSetChanged();
                 }
             });
@@ -48,7 +49,7 @@ public class GamesListAdapter extends RecyclerView.Adapter<GamesListAdapter.Game
         }
     }
 
-    public void setGames(List<Game> games) {
+    public void setGames(List<GameWithTemplate> games) {
         mGames = games;
         notifyDataSetChanged();
     }

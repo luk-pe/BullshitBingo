@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 
 import com.example.lukaspeter.bullshitbingo.models.DataRepository;
 import com.example.lukaspeter.bullshitbingo.models.Game;
+import com.example.lukaspeter.bullshitbingo.models.GameWithTemplate;
 
 import java.util.List;
 
@@ -36,5 +37,9 @@ public class GameViewModel extends AndroidViewModel {
 
     public LiveData<List<Game>> getAllGames(){
         return mDataRepository.getAllGames();
+    }
+
+    public LiveData<List<GameWithTemplate>> getAllGamesWithTemplate(){
+        return mDataRepository.getAllGamesWithTemplate();
     }
 }

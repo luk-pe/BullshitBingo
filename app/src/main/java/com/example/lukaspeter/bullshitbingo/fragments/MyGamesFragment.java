@@ -16,6 +16,7 @@ import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.activities.GameActivity;
 import com.example.lukaspeter.bullshitbingo.adapters.GamesListAdapter;
 import com.example.lukaspeter.bullshitbingo.models.Game;
+import com.example.lukaspeter.bullshitbingo.models.GameWithTemplate;
 import com.example.lukaspeter.bullshitbingo.viewModels.GameViewModel;
 
 import java.util.List;
@@ -50,9 +51,9 @@ public class MyGamesFragment extends Fragment implements GamesListAdapter.OnClic
         // TODO: Change to GameViewModel and pass games to adapter
 
         GameViewModel mGameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
-        mGameViewModel.getAllGames().observe(this, new Observer<List<Game>>() {
+        mGameViewModel.getAllGamesWithTemplate().observe(this, new Observer<List<GameWithTemplate>>() {
             @Override
-            public void onChanged(@Nullable List<Game> games) {
+            public void onChanged(@Nullable List<GameWithTemplate> games) {
                 // Update the cached copy of the games in the adapter.
                 adapter.setGames(games);
             }

@@ -31,6 +31,11 @@ public interface GameDao {
     @Query("SELECT * FROM game WHERE id = :id")
     Game gameById(int id);
 
+    @Query("SELECT Game.*," +
+            "Template.id AS template_id, Template.name as template_name, Template.created as template_created, Template.creator as template_creator, Template.priv as template_priv " +
+            "FROM Game INNER JOIN Template ON Game.template = Template.id")
+    LiveData<List<GameWithTemplate>> getAllGamesWithTemplate();
+
     @Query("SELECT * FROM game")
     LiveData<List<Game>> getAllGames();
 

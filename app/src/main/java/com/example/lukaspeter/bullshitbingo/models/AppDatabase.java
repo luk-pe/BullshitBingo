@@ -57,8 +57,9 @@ public abstract class AppDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(final Void... params) {
-            itemDao.deleteAllItems();
+            //itemDao.deleteAllItems();
             //templateDao.deleteAllTemplates();
+            /*
             Template template = new Template("Dinge die Michi sagt", "Lukas", false, new Date());
             long tid = templateDao.insertTemplate(template);
             // template = new Template("Autos die von Lüdin gerammt werden", "Lukas", false, new Date());
@@ -95,7 +96,7 @@ public abstract class AppDatabase extends RoomDatabase {
             itemDao.insertItem(item);
             item = new Item(16, "Macan", (int) tid);
             itemDao.insertItem(item);
-
+            */
 
             return null;
         }

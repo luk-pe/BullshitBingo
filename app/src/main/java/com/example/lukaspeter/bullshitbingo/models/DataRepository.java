@@ -129,6 +129,16 @@ public class DataRepository {
         return null;
     }
 
+    public LiveData<List<GameWithTemplate>> getAllGamesWithTemplate(){
+        try {
+            return (LiveData<List<GameWithTemplate>>) new SelectAsyncTask(mGameDao).execute(0).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     /**
      * GAMELOG METHODS
      */
