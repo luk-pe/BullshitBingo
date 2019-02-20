@@ -1,5 +1,6 @@
 package com.example.lukaspeter.bullshitbingo.activities;
 
+
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -163,5 +164,11 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
     private void onCallBingoClick() {
         // TODO Save game in DB and go back to Menu
         Toast.makeText(this, "CONGRATULATIONS!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+       // TODO go back to MyGamesFragment
     }
 }
