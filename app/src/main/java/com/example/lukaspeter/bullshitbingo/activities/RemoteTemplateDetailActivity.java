@@ -1,10 +1,8 @@
 package com.example.lukaspeter.bullshitbingo.activities;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -95,7 +93,8 @@ public class RemoteTemplateDetailActivity extends AppCompatActivity implements G
     private void onBtnCopyTemplateClick() {
 
         // Save local copy of template and items on device
-        Template template = new Template(mTemplate.getName(), mTemplate.getCreator(), false, mTemplate.getCreated());
+        // TODO Michi: Insert Description here
+        Template template = new Template(mTemplate.getName(), mTemplate.getCreator(), false, mTemplate.getCreated(), "");
         long tid = mTemplateViewModel.insertTemplate(template);
         // create items
         for (int i = 0; i < mTemplate.getItems().size(); i++) {
