@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "588446935163-4vj619qm93kd7mogdvo45ubv4sd5f3ev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lukaspeter.bullshitbingo",
+            "certificate_hash": "6e87fe23d67e6573896d3a32443f3a8908c4f4bc"
+          }
+        },
+        {
           "client_id": "588446935163-gm4gbf4c3dc7ip8ql9pjje6t4fkrersf.apps.googleusercontent.com",
           "client_type": 3
         }

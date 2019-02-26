@@ -12,31 +12,29 @@ import com.example.lukaspeter.bullshitbingo.models.RemoteTemplate;
 
 import java.util.List;
 
-public class BrowseListAdapter extends RecyclerView.Adapter<BrowseListAdapter.BrowseListItemViewHolder> {
-
+public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SearchListItemViewHolder> {
     private final LayoutInflater mInflater;
     private List<RemoteTemplate> mTemplates;
-    private OnClickRemoteTemplateListListener mListener;
+    private SearchListAdapter.OnClickRemoteTemplateListListener mListener;
 
-    public BrowseListAdapter(Context context, OnClickRemoteTemplateListListener listener) {
+    public SearchListAdapter(Context context, OnClickRemoteTemplateListListener listener) {
         mInflater = LayoutInflater.from(context);
         mListener = listener;
     }
 
     @Override
-    public BrowseListItemViewHolder onCreateViewHolder(ViewGroup parent, int ViewType) {
-        View templateView = mInflater.inflate(R.layout.browse_list_item, parent, false);
-        return new BrowseListItemViewHolder(templateView);
+    public SearchListItemViewHolder onCreateViewHolder(ViewGroup parent, int ViewType) {
+        View templateView = mInflater.inflate(R.layout.search_list_item, parent, false);
+        return new SearchListAdapter.SearchListItemViewHolder(templateView);
     }
 
     @Override
-    public void onBindViewHolder(BrowseListItemViewHolder holder, int position) {
+    public void onBindViewHolder(SearchListAdapter.SearchListItemViewHolder holder, int position) {
         if (mTemplates != null) {
             final RemoteTemplate currentTemplate = mTemplates.get(position);
 
             holder.txtViewTemplateName.setText(currentTemplate.getName());
             holder.txtViewCreatedBy.setText(currentTemplate.getCreator());
-            holder.txtViewDownloadCounter.setText("🔥 " + String.valueOf(currentTemplate.getDownloaded()));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -63,16 +61,14 @@ public class BrowseListAdapter extends RecyclerView.Adapter<BrowseListAdapter.Br
         }
     }
 
-    class BrowseListItemViewHolder extends RecyclerView.ViewHolder {
+    class SearchListItemViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtViewTemplateName;
         private final TextView txtViewCreatedBy;
-        private final TextView txtViewDownloadCounter;
 
-        private BrowseListItemViewHolder(View itemView) {
+        private SearchListItemViewHolder(View itemView) {
             super(itemView);
             txtViewTemplateName = itemView.findViewById(R.id.browse_list_item_template_name);
             txtViewCreatedBy = itemView.findViewById(R.id.browse_list_item_created_by);
-            txtViewDownloadCounter = itemView.findViewById(R.id.browse_list_item_download_counter);
         }
     }
 

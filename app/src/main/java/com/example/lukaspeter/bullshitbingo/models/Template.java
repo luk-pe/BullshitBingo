@@ -29,12 +29,16 @@ public class Template {
     @NonNull
     private Date created;
 
-    public Template(@NonNull String name, String creator, boolean priv, @NonNull Date created) {
+    @ColumnInfo(name = "description")
+    private String description;
+
+    public Template(@NonNull String name, String creator, boolean priv, @NonNull Date created, String description) {
         this.name = name;
         this.id = id;
         this.creator = creator;
         this.priv = priv;
         this.created = created;
+        this.description = description;
 
     }
 
@@ -78,5 +82,13 @@ public class Template {
 
     public void setCreated(@NonNull Date created) {
         this.created = created;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
