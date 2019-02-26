@@ -33,6 +33,10 @@ public class TemplateViewModel extends AndroidViewModel {
         return mDataRepository.getAllRemoteTemplates();
     }
 
+    public LiveData<List<RemoteTemplate>> findRemoteTemplatesByName(String name) {
+        return mDataRepository.findRemoteTemplatesByName(name);
+    }
+
     public long insertTemplate(Template template) {
         long id = mDataRepository.insertTemplate(template);
         return id;

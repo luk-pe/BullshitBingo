@@ -190,6 +190,10 @@ public class DataRepository {
         return firebaseDB.getAllTemplates();
     }
 
+    public LiveData<List<RemoteTemplate>> findRemoteTemplatesByName(String name) {
+        return firebaseDB.findTemplateByName(name);
+    }
+
     public MutableLiveData<Boolean> uploadTemplate(Template t, List<Item> items, String description) {
 
         ArrayList<String> itemList = new ArrayList<>();

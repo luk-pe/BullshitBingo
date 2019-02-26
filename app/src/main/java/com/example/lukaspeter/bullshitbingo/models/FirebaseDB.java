@@ -1,5 +1,6 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -35,6 +36,47 @@ public class FirebaseDB {
         final MutableLiveData<List<RemoteTemplate>> liveData = new MutableLiveData<>();
 
         firebaseDB.collection("templates")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<RemoteTemplate> templates = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String id = document.getId();
+                                String name = document.getString("name");
+                                String creator = document.getString("creator");
+                                String description = document.getString("description");
+                                Date created = document.getDate("created");
+                                long downloaded = document.getLong("downloaded");
+                                ArrayList<String> items = (ArrayList<String>) document.get("items");
+
+                                // TODO was soll mit der ID gemacht werden???
+                                RemoteTemplate t = new RemoteTemplate(id,name,creator,description,downloaded,created,items);
+                                templates.add(t);
+                            }
+
+                            liveData.postValue(templates);
+
+                        } else {
+                            Log.w("DataRepository", "Error getting documents.", task.getException());
+                        }
+                    }
+
+                });
+
+        return liveData;
+    }
+
+    public MutableLiveData<List<RemoteTemplate>> findTemplateByName(String name) {
+
+        final MutableLiveData<List<RemoteTemplate>> liveData = new MutableLiveData<>();
+
+        firebaseDB.collection("templates")
+                .orderBy("name")
+                .startAt(name)
+                .endAt(name+"\uf8ff")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
