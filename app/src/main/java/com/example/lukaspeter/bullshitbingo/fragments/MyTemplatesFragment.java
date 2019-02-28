@@ -27,8 +27,7 @@ public class MyTemplatesFragment extends Fragment implements TemplateListAdapter
     private TemplateViewModel mTemplateViewModel;
 
     public static MyTemplatesFragment newInstance() {
-        MyTemplatesFragment fragment = new MyTemplatesFragment();
-        return fragment;
+        return new MyTemplatesFragment();
     }
 
     @Override
@@ -46,7 +45,7 @@ public class MyTemplatesFragment extends Fragment implements TemplateListAdapter
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO LUKAS Intent for new Template
+                // Intent for new Template
                 Intent mIntent = new Intent(getActivity(), NewGameActivity.class);
                 startActivity(mIntent);
             }

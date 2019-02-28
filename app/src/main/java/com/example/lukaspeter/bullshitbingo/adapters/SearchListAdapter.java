@@ -13,6 +13,7 @@ import com.example.lukaspeter.bullshitbingo.models.RemoteTemplate;
 import java.util.List;
 
 public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SearchListItemViewHolder> {
+
     private final LayoutInflater mInflater;
     private List<RemoteTemplate> mTemplates;
     private SearchListAdapter.OnClickRemoteTemplateListListener mListener;
@@ -67,8 +68,8 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Se
 
         private SearchListItemViewHolder(View itemView) {
             super(itemView);
-            txtViewTemplateName = itemView.findViewById(R.id.browse_list_item_template_name);
-            txtViewCreatedBy = itemView.findViewById(R.id.browse_list_item_created_by);
+            txtViewTemplateName = itemView.findViewById(R.id.search_list_item_template_name);
+            txtViewCreatedBy = itemView.findViewById(R.id.search_list_item_created_by);
         }
     }
 

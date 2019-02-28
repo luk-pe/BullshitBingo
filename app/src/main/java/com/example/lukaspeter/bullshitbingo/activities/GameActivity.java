@@ -165,10 +165,10 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
         // TODO Save game in DB and go back to Menu
         Toast.makeText(this, "CONGRATULATIONS!", Toast.LENGTH_SHORT).show();
     }
-
+ /*
     @Override
     public void onBackPressed()
     {
        // TODO go back to MyGamesFragment
-    }
+    }*/
 }

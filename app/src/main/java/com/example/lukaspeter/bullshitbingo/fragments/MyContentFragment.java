@@ -18,8 +18,7 @@ import java.util.List;
 public class MyContentFragment extends Fragment {
 
     public static MyContentFragment newInstance() {
-        MyContentFragment fragment = new MyContentFragment();
-        return fragment;
+        return new MyContentFragment();
     }
 
     @Override
@@ -33,10 +32,10 @@ public class MyContentFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_content, container, false);
 
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        ViewPager viewPager = view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
-        TabLayout tabs = (TabLayout) view.findViewById(R.id.result_tabs);
+        TabLayout tabs = view.findViewById(R.id.result_tabs);
         tabs.setupWithViewPager(viewPager);
 
         return view;
