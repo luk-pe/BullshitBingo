@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         // Init firebase
         FirebaseApp.initializeApp(getApplicationContext());
 
+        Intent in = new Intent(this, LoginActivity.class);
+        startActivity(in);
+
         // Start Browse Fragment onCreate
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -63,7 +66,5 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
     }
 }
