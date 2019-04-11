@@ -50,12 +50,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Init firebase
-        FirebaseApp.initializeApp(getApplicationContext());
-
-        Intent in = new Intent(this, LoginActivity.class);
-        startActivity(in);
-
         // Start Browse Fragment onCreate
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

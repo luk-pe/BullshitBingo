@@ -14,6 +14,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class FirebaseDB {
 
@@ -121,6 +122,19 @@ public class FirebaseDB {
                     }
                 });
 
+        return success;
+    }
+
+    public MutableLiveData<Boolean> insertUser(String uid, Map<String, Object> user) {
+
+        final MutableLiveData<Boolean> success = new MutableLiveData<>();
+        firebaseDB.collection("users").document(uid).set(user)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        success.postValue(task.isSuccessful());
+                    }
+                });
         return success;
     }
 }
