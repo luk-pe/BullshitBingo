@@ -73,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 1" />
 
             <EditText
@@ -80,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 2" />
 
             <EditText
@@ -87,6 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 3" />
 
             <EditText
@@ -94,6 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 4" />
 
             <EditText
@@ -101,6 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 5" />
 
             <EditText
@@ -108,6 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 6" />
 
             <EditText
@@ -115,60 +121,70 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 7" />
             <EditText
                 android:id="@+id/item8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 8" />
             <EditText
                 android:id="@+id/item9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 9" />
             <EditText
                 android:id="@+id/item10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 10" />
             <EditText
                 android:id="@+id/item11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 11" />
             <EditText
                 android:id="@+id/item12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 12" />
             <EditText
                 android:id="@+id/item13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 13" />
             <EditText
                 android:id="@+id/item14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 14" />
             <EditText
                 android:id="@+id/item15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 15" />
             <EditText
                 android:id="@+id/item16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:singleLine="true"
                 android:hint="Item 16" />
 
         </LinearLayout>
