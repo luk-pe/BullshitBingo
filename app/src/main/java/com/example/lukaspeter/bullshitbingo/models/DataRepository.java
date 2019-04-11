@@ -78,6 +78,10 @@ public class DataRepository {
         return id;
     }
 
+    public void updateTemplateDescription(String description, int templateId){
+        new UpdateAsyncTask(mTemplateDao).execute(description, templateId);
+    }
+
     /**
      * ITEM METHODS
      */

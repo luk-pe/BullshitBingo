@@ -49,4 +49,8 @@ public class TemplateViewModel extends AndroidViewModel {
     public LiveData<Boolean> uploadTemplate(Template template, List<Item> items, String description) {
         return mDataRepository.uploadTemplate(template,items,description);
     }
+
+    public void updateTemplateDescription(String description, int id){
+        mDataRepository.updateTemplateDescription(description, id);
+    }
 }

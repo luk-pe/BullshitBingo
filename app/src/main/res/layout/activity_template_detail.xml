@@ -23,6 +23,15 @@
         android:layout_below="@id/template_detail_text_creator"
         android:text="@string/play"/>
 
+    <Button
+        android:id="@+id/template_detail_button_edit_description"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/template_detail_text_description"
+        android:text="@string/edit_description" />
+
+
     <GridView
         android:id="@+id/template_detail_grid_view"
         android:layout_width="match_parent"

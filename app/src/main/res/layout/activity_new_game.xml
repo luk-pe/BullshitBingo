@@ -187,6 +187,21 @@
                 android:singleLine="true"
                 android:hint="Item 16" />
 
+            <TextView
+                android:id="@+id/textView_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description:"
+                android:textSize="24sp"
+                android:layout_margin="5dp"/>
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Optional description" />
+
         </LinearLayout>
 
     </ScrollView>

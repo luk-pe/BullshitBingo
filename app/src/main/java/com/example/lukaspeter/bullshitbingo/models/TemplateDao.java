@@ -36,5 +36,8 @@ public interface TemplateDao {
     List<Template> findTemplate(String input);
     //TODO: add "%" to the input
 
+    @Query("UPDATE Template SET description = :description WHERE id= :id")
+    void updateDescription(String description, int id);
+
 
 }
