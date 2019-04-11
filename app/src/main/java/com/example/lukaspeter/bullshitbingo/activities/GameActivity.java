@@ -12,6 +12,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lukaspeter.bullshitbingo.R;
@@ -31,6 +32,8 @@ import java.util.List;
 
 public class GameActivity extends AppCompatActivity implements GameGridViewAdapter.OnClickGridViewItemListener {
 
+    private TextView txtViewCreator;
+    private TextView txtViewDescription;
     private Button btnCallBingo;
     private List<TempItem> tempItems = new ArrayList<>();
     private Game mGame;
@@ -67,6 +70,7 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
 
         mGamelogViewModel = ViewModelProviders.of(this).get(GamelogViewModel.class);
 
+        initTextViews();
         initBingoButton();
         initGridViewAdapter();
     }
@@ -108,6 +112,14 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
                 adapter.setItems(tempItems);
             }
         });
+    }
+
+    private void initTextViews() {
+        txtViewCreator = this.findViewById(R.id.game_text_creator);
+        txtViewDescription = this.findViewById(R.id.game_text_description);
+
+        txtViewCreator.setText(getResources().getString(R.string.created_by) + " " + mTemplate.getCreator());
+        txtViewDescription.setText(mTemplate.getDescription());
     }
 
     private void initBingoButton() {

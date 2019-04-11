@@ -3,6 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/game_text_creator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/play"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/game_text_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/game_text_creator"
+        android:text="@string/play"/>
     <GridView
         android:id="@+id/game_grid_view"
         android:layout_width="match_parent"
