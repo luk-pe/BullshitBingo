@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BullshitBingo</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Bullshit Bingo</string>
     <string name="title_browse">Browse</string>
     <string name="title_mycontent">My Content</string>
     <string name="title_search">Search</string>
