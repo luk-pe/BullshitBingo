@@ -32,13 +32,17 @@ public class Template {
     @ColumnInfo(name = "description")
     private String description;
 
-    public Template(@NonNull String name, String creator, boolean priv, @NonNull Date created, String description) {
+    @ColumnInfo(name = "remoteId")
+    private String remoteId;
+
+    public Template(@NonNull String name, String creator, boolean priv, @NonNull Date created, String description, String remoteId) {
         this.name = name;
         this.id = id;
         this.creator = creator;
         this.priv = priv;
         this.created = created;
         this.description = description;
+        this.remoteId = remoteId;
 
     }
 
@@ -90,5 +94,13 @@ public class Template {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getRemoteId() {
+        return remoteId;
+    }
+
+    public void setRemoteId(String remoteId) {
+        this.remoteId = remoteId;
     }
 }

@@ -7,7 +7,7 @@ import com.example.lukaspeter.bullshitbingo.models.GamelogDao;
 import com.example.lukaspeter.bullshitbingo.models.ItemDao;
 import com.example.lukaspeter.bullshitbingo.models.TemplateDao;
 
-public class SelectAsyncTask extends AsyncTask<Integer, Void, Object> {
+public class SelectAsyncTask extends AsyncTask<Object, Void, Object> {
     private TemplateDao templateDao;
     private ItemDao itemDao;
     private GameDao gameDao;
@@ -27,19 +27,24 @@ public class SelectAsyncTask extends AsyncTask<Integer, Void, Object> {
     }
 
     @Override
-    protected Object doInBackground(final Integer... params) {
+    protected Object doInBackground(final Object... params) {
 
         if (templateDao != null) {
-            if (params[0] != 0) return templateDao.templateById(params[0]);
-            else return templateDao.getAllTemplates();
+            if(params[0] instanceof Integer && (Integer) params[0] > 0){
+                return templateDao.templateById((Integer) params[0]);
+            } else if(params[0] instanceof String) {
+                return templateDao.templateByRemoteId((String) params[0]);
+            } else {
+               return templateDao.getAllTemplates();
+            }
         } else if (itemDao != null) {
-            return itemDao.getTemplateItems(params[0]);
+            return itemDao.getTemplateItems((Integer) params[0]);
         } else if (gameDao != null) {
-            if (params[0] != 0) return gameDao.gameById(params[0]);
+            if ((Integer) params[0] != 0) return gameDao.gameById((Integer) params[0]);
             else return gameDao.getAllGamesWithTemplate();
         } else if (gamelogDao != null) {
-            if(params[1] != 0) return gamelogDao.getItemStatus(params[0], params[1]);
-            else return gamelogDao.getGameStatus(params[0]);
+            if(params[1] != null) return gamelogDao.getItemStatus((Integer) params[0], (Integer) params[1]);
+            else return gamelogDao.getGameStatus((Integer) params[0]);
         }else {
             return null;
         }

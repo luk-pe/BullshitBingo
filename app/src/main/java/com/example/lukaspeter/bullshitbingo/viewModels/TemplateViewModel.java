@@ -25,6 +25,10 @@ public class TemplateViewModel extends AndroidViewModel {
         return mDataRepository.getTemplateById(id);
     }
 
+    public Template getTemplateByRemoteId(String remoteId) {
+        return mDataRepository.getTemplateByRemoteId(remoteId);
+    }
+
     public LiveData<List<Template>> getAllTemplates() {
         return mAllTemplates;
     }

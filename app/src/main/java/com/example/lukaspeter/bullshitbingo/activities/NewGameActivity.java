@@ -74,7 +74,7 @@ public class NewGameActivity extends AppCompatActivity {
                 }
                 // no empty fields
                 else {
-                    template = new Template(templateNameString, "User", true, new Date(), "");
+                    template = new Template(templateNameString, "User", true, new Date(), "", "");
                     long tid = mTemplateViewModel.insertTemplate(template);
                     Log.d("Lukas", "tid: " + tid);
                     // check if tid == 0 -> template wasn't created -> exception in dataRepository

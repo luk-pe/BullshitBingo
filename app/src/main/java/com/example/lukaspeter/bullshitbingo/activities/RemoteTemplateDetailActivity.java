@@ -93,13 +93,16 @@ public class RemoteTemplateDetailActivity extends AppCompatActivity implements G
     private void onBtnCopyTemplateClick() {
 
         // Save local copy of template and items on device
-        // TODO Michi: Insert Description here
-        Template template = new Template(mTemplate.getName(), mTemplate.getCreator(), false, mTemplate.getCreated(), "");
-        long tid = mTemplateViewModel.insertTemplate(template);
-        // create items
-        for (int i = 0; i < mTemplate.getItems().size(); i++) {
-            Item item = new Item(i + 1, mTemplate.getItems().get(i), (int) tid);
-            mItemViewModel.insertItem(item);
+        Template template = mTemplateViewModel.getTemplateByRemoteId(mTemplate.getId());
+        if(template == null){
+            // TODO Michi: Insert Description here
+            template = new Template(mTemplate.getName(), mTemplate.getCreator(), false, mTemplate.getCreated(), "", mTemplate.getId());
+            long tid = mTemplateViewModel.insertTemplate(template);
+            // create items
+            for (int i = 0; i < mTemplate.getItems().size(); i++) {
+                Item item = new Item(i + 1, mTemplate.getItems().get(i), (int) tid);
+                mItemViewModel.insertItem(item);
+            }
         }
 
         // Create game from template
