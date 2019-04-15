@@ -7,6 +7,7 @@
     <string name="title_search">Search</string>
     <string name="title_mytemplates">My Templates</string>
     <string name="title_mygames">My Games</string>
+    <string name="title_user">User</string>
     <string name="call_bingo">CALL BINGO!</string>
     <string name="emptyInputFields">Please fill all input fields!</string>
     <string name="emptyFields">Empty Fields</string>
@@ -37,4 +38,13 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="example_name">No name</string>
+    <string name="example_mail">mail@mail.com</string>
+    <string name="menu_user_change_name">Change username</string>
+    <string name="menu_user_logout">Logout</string>
+    <string name="menu_user_add_subscriber">Add subscriber</string>
+    <string name="title_change_username">Please type in your new username</string>
 </resources>

@@ -22,8 +22,6 @@ public class SplashActivity extends AppCompatActivity {
 
         // Init firebase
         FirebaseApp.initializeApp(getApplicationContext());
-
-        Log.d("KACK", "WAS LOS");
     }
 
     @Override
@@ -33,10 +31,6 @@ public class SplashActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-        Intent login2 = new Intent(this, LoginActivity.class);
-        startActivity(login2);
-
-        /*
         if (user != null) {
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
@@ -44,7 +38,6 @@ public class SplashActivity extends AppCompatActivity {
             Intent login = new Intent(this, LoginActivity.class);
             startActivity(login);
         }
-        */
     }
 
 }
