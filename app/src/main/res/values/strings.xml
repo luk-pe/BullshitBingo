@@ -47,4 +47,7 @@
     <string name="menu_user_logout">Logout</string>
     <string name="menu_user_add_subscriber">Add subscriber</string>
     <string name="title_change_username">Please type in your new username</string>
+    <string name="ask_logout">Do you really want to log out?</string>
+    <string name="user_not_found">User not found</string>
+    <string name="subscribes_to">You subscribe to:</string>
 </resources>
