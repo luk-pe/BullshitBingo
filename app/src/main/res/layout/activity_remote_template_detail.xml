@@ -36,13 +36,13 @@
         android:verticalSpacing="3dp" />
 
     <Button
-        android:id="@+id/remote_template_detail_button_play"
+        android:id="@+id/remote_template_detail_button_create_copy"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_alignParentBottom="true"
         android:backgroundTint="@color/colorPrimary"
-        android:text="@string/play"/>
+        android:text="@string/create_local_copy"/>
 
 </RelativeLayout>

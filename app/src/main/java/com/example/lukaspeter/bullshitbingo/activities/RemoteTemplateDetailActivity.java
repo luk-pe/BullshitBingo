@@ -1,16 +1,22 @@
 package com.example.lukaspeter.bullshitbingo.activities;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.adapters.GameGridViewAdapter;
+import com.example.lukaspeter.bullshitbingo.helpers.SimpleAlertDialog;
 import com.example.lukaspeter.bullshitbingo.helpers.TempItem;
 import com.example.lukaspeter.bullshitbingo.models.Game;
 import com.example.lukaspeter.bullshitbingo.models.Item;
@@ -29,7 +35,7 @@ public class RemoteTemplateDetailActivity extends AppCompatActivity implements G
     // UI
     private TextView txtViewCreator;
     private TextView txtViewDescription;
-    private Button btnStart;
+    private Button btnCopy;
 
     private List<TempItem> tempItems = new ArrayList<>();
     private RemoteTemplate mTemplate;
@@ -73,8 +79,8 @@ public class RemoteTemplateDetailActivity extends AppCompatActivity implements G
     }
 
     private void initPlayButton() {
-        btnStart = this.findViewById(R.id.remote_template_detail_button_play);
-        btnStart.setOnClickListener(new View.OnClickListener() {
+        btnCopy = this.findViewById(R.id.remote_template_detail_button_create_copy);
+        btnCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBtnCopyTemplateClick();
@@ -104,19 +110,17 @@ public class RemoteTemplateDetailActivity extends AppCompatActivity implements G
             }
         }
 
-        // Create game from template
-        Game game = new Game(new Date(), template.getId());
-        long gameId = mGameViewModel.insertGame(game);
-
-        // Close activity if gameId = 0 -> game wasn't created -> exception in dataRepository
-        if (gameId == 0) {
-            RemoteTemplateDetailActivity.this.finish();
-        }
-
-        // TODO Bugfix: Spiel wird in Room DB erstellt aber nicht gestartet -> Error
-        Intent mIntent = new Intent(this, GameActivity.class);
-        mIntent.putExtra("game_id", (int) gameId);
-        startActivity(mIntent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.success);
+        builder.setMessage(R.string.copy_created);
+        builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent mIntent = new Intent(RemoteTemplateDetailActivity.this, MainActivity.class);
+                startActivity(mIntent);
+            }
+        });
+        builder.show();
     }
 
     @Override
