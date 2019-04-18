@@ -34,9 +34,9 @@ public class GamesListAdapter extends RecyclerView.Adapter<GamesListAdapter.Game
     public void onBindViewHolder(GameViewHolder holder, int position) {
         if (mGames != null) {
             final GameWithTemplate g = mGames.get(position);
-
-            // TODO: set Text template name
             holder.templateItemView.setText(g.getTemplate().getName());
+            // TODO: format Date
+            holder.gameItemStartedView.setText(g.getGame().getStarted().toString());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -61,10 +61,13 @@ public class GamesListAdapter extends RecyclerView.Adapter<GamesListAdapter.Game
 
     class GameViewHolder extends RecyclerView.ViewHolder {
         private final TextView templateItemView;
+        private final TextView gameItemStartedView;
 
         private GameViewHolder(View itemView) {
             super(itemView);
             templateItemView = itemView.findViewById(R.id.textView);
+            gameItemStartedView = itemView.findViewById(R.id.textView2);
+
         }
     }
 

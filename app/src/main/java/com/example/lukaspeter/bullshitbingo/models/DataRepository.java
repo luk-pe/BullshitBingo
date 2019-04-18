@@ -3,24 +3,14 @@ package com.example.lukaspeter.bullshitbingo.models;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.example.lukaspeter.bullshitbingo.db.DeleteAsyncTask;
 import com.example.lukaspeter.bullshitbingo.db.InsertAsyncTask;
 import com.example.lukaspeter.bullshitbingo.db.SelectAsyncTask;
 import com.example.lukaspeter.bullshitbingo.db.UpdateAsyncTask;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class DataRepository {
@@ -56,6 +46,16 @@ public class DataRepository {
         return null;
     }
 
+    public Template getTemplateByRemoteId(String remoteId){
+        try {
+            return (Template) new SelectAsyncTask(mTemplateDao).execute(remoteId).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public LiveData<List<Template>> getAllTemplates() {
         try {
             return (LiveData<List<Template>>) new SelectAsyncTask(mTemplateDao).execute(0).get();
@@ -76,6 +76,10 @@ public class DataRepository {
             id = 0;
         }
         return id;
+    }
+
+    public void updateTemplateDescription(String description, int templateId){
+        new UpdateAsyncTask(mTemplateDao).execute(description, templateId);
     }
 
     /**

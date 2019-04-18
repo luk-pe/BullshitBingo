@@ -35,6 +35,7 @@ public class TemplateListAdapter extends RecyclerView.Adapter<TemplateListAdapte
             final Template currentTemplate = mTemplates.get(position);
 
             holder.templateItemView.setText(currentTemplate.getName());
+            holder.templateCreatedItemView.setText(currentTemplate.getCreator());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -63,10 +64,12 @@ public class TemplateListAdapter extends RecyclerView.Adapter<TemplateListAdapte
 
     class TemplateViewHolder extends RecyclerView.ViewHolder {
         private final TextView templateItemView;
+        private final TextView templateCreatedItemView;
 
         private TemplateViewHolder(View itemView) {
             super(itemView);
             templateItemView = itemView.findViewById(R.id.textView);
+            templateCreatedItemView = itemView.findViewById(R.id.textView2);
         }
     }
 

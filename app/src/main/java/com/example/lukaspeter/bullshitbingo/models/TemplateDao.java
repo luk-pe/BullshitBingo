@@ -29,9 +29,15 @@ public interface TemplateDao {
     @Query("SELECT * FROM Template WHERE id= :id")
     Template templateById(int id);
 
+    @Query("SELECT * FROM Template WHERE remoteId= :remoteId")
+    Template templateByRemoteId(String remoteId);
+
     @Query("SELECT * FROM Template WHERE name LIKE :input OR creator LIKE :input")
     List<Template> findTemplate(String input);
     //TODO: add "%" to the input
+
+    @Query("UPDATE Template SET description = :description WHERE id= :id")
+    void updateDescription(String description, int id);
 
 
 }

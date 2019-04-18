@@ -4,16 +4,17 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.adapters.GameGridViewAdapter;
@@ -32,6 +33,9 @@ import java.util.List;
 
 public class TemplateDetailActivity extends AppCompatActivity implements GameGridViewAdapter.OnClickGridViewItemListener {
 
+    private TextView txtViewCreator;
+    private TextView txtViewDescription;
+    private Button btnEditDescription;
     private Button btnStart;
     private Button btnMakePublic;
     private ItemViewModel mItemViewModel;
@@ -61,6 +65,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
 
         setTitle(mTemplate.getName());
 
+        initTextViews();
         initButtons();
         initGridViewAdapter();
     }
@@ -84,7 +89,23 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
         });
     }
 
+    private void initTextViews() {
+        txtViewCreator = this.findViewById(R.id.template_detail_text_creator);
+        txtViewDescription = this.findViewById(R.id.template_detail_text_description);
+
+        txtViewCreator.setText(getResources().getString(R.string.created_by) + " " + mTemplate.getCreator());
+        txtViewDescription.setText(mTemplate.getDescription());
+    }
+
     private void initButtons() {
+        btnEditDescription = this.findViewById(R.id.template_detail_button_edit_description);
+        btnEditDescription.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                showDescriptionChangeDialog(mTemplate.getDescription());
+            }
+        });
+
         btnStart = this.findViewById(R.id.template_detail_button_play);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +123,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
         });
         if (!mTemplate.isPriv()) btnMakePublic.setVisibility(View.GONE);
     }
+
 
     private void onBtnStartClick() {
         // Create game and push game id to GameActivity
@@ -167,8 +189,41 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
         });
     }
 
+    private void showDescriptionChangeDialog(String description){
+        // get prompts.xml view
+        LayoutInflater layoutInflater = LayoutInflater.from(TemplateDetailActivity.this);
+        View promptView = layoutInflater.inflate(R.layout.dialog_change_description, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TemplateDetailActivity.this);
+        alertDialogBuilder.setView(promptView);
+
+        final EditText editText = promptView.findViewById(R.id.description_input);
+        editText.setText(description);
+        // setup a dialog window
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        updateDescription(editText.getText().toString());
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create an alert dialog
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
+
     @Override
     public void onClickGridViewItem(TempItem item) {
         // Do nothing in DetailView
+    }
+
+    private void updateDescription(String description){
+        txtViewDescription.setText(description);
+        mTemplateViewModel.updateTemplateDescription(description, mTemplate.getId());
     }
 }
