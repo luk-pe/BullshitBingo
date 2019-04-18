@@ -26,6 +26,8 @@ import com.example.lukaspeter.bullshitbingo.models.Template;
 import com.example.lukaspeter.bullshitbingo.viewModels.GameViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.ItemViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -147,21 +149,13 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
 
-        final EditText creatorBox = new EditText(this);
-        creatorBox.setHint("Creator");
-        layout.addView(creatorBox); // Notice this is an add method
-
-        final EditText descriptionBox = new EditText(this);
-        descriptionBox.setHint("Description");
-        layout.addView(descriptionBox); // Another add method
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.bingo)
                 .setMessage(R.string.bingo)
                 .setView(layout)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        onAlertOKBtnClick(creatorBox.getText().toString(),descriptionBox.getText().toString());
+                        onAlertOKBtnClick(mTemplate.getCreator(), mTemplate.getDescription());
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

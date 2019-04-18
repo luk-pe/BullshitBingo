@@ -17,6 +17,8 @@ import com.example.lukaspeter.bullshitbingo.models.Item;
 import com.example.lukaspeter.bullshitbingo.models.Template;
 import com.example.lukaspeter.bullshitbingo.viewModels.ItemViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Date;
 
@@ -74,9 +76,10 @@ public class NewGameActivity extends AppCompatActivity {
                 }
                 // no empty fields
                 else {
+                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     EditText templateDescriptionInput = findViewById(R.id.description);
                     String templateDescription = templateDescriptionInput.getText().toString();
-                    template = new Template(templateNameString, "User", true, new Date(), templateDescription, null);
+                    template = new Template(templateNameString, user.getDisplayName(), true, new Date(), templateDescription, null);
                     long tid = mTemplateViewModel.insertTemplate(template);
                     Log.d("Lukas", "tid: " + tid);
                     // check if tid == 0 -> template wasn't created -> exception in dataRepository

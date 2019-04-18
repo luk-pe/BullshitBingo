@@ -154,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Map<String, Object> dbUser = new HashMap<>();
                             dbUser.put("email", user.getEmail());
-                            dbUser.put("name", "No name");
+                            dbUser.put("name", user.getEmail());
                             dbUser.put("subscribers", new ArrayList<String>());
                             dbUser.put("subscribes_to", new ArrayList<String>());
 
