@@ -86,7 +86,7 @@ public class UserFragment extends Fragment {
         txtUserName = this.getActivity().findViewById(R.id.textViewName);
         txtUserMail = this.getActivity().findViewById(R.id.textViewMail);
 
-        txtUserName.setText(user.getDisplayName().equals("") ? getString(R.string.example_name) : user.getDisplayName());
+        txtUserName.setText(user.getDisplayName().isEmpty() ? getString(R.string.example_name) : user.getDisplayName());
         txtUserMail.setText(user.getEmail());
 
 
@@ -183,7 +183,11 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String text = input.getText().toString();
-                addSubscriber(text);
+                if (text.equals("")) {
+                    Toast.makeText(getContext(), "Please insert email-address!", Toast.LENGTH_SHORT).show();
+                } else {
+                    addSubscriber(text);
+                }
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
