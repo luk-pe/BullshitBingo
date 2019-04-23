@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,8 +21,10 @@ import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
 
 import java.util.List;
 
-public class BrowseFragment extends Fragment implements BrowseListAdapter.OnClickRemoteTemplateListListener {
+public class BrowseFragment extends Fragment implements BrowseListAdapter.OnClickRemoteTemplateListListener, SwipeRefreshLayout.OnRefreshListener {
     private TemplateViewModel mTemplateViewModel;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private BrowseListAdapter adapter;
 
     public static BrowseFragment newInstance() {
         return new BrowseFragment();
@@ -42,18 +45,15 @@ public class BrowseFragment extends Fragment implements BrowseListAdapter.OnClic
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         RecyclerView recyclerView = this.getActivity().findViewById(R.id.recyclerview);
-        final BrowseListAdapter adapter = new BrowseListAdapter(this.getContext(), this);
+        adapter = new BrowseListAdapter(this.getContext(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.browse_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
         mTemplateViewModel = ViewModelProviders.of(this).get(TemplateViewModel.class);
-        mTemplateViewModel.getAllRemoteTemplates().observe(this, new Observer<List<RemoteTemplate>>() {
-            @Override
-            public void onChanged(@Nullable List<RemoteTemplate> templates) {
-                // Update the cached copy of the templates in the adapter.
-                adapter.setTemplates(templates);
-            }
-        });
+        reloadData();
     }
 
     @Override
@@ -61,5 +61,22 @@ public class BrowseFragment extends Fragment implements BrowseListAdapter.OnClic
         Intent mIntent = new Intent(this.getActivity(), RemoteTemplateDetailActivity.class);
         mIntent.putExtra("template", template);
         this.getActivity().startActivity(mIntent);
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
+        reloadData();
+    }
+
+    private void reloadData() {
+        mTemplateViewModel.getAllRemoteTemplates().observe(this, new Observer<List<RemoteTemplate>>() {
+            @Override
+            public void onChanged(@Nullable List<RemoteTemplate> templates) {
+                // Update the cached copy of the templates in the adapter.
+                adapter.setTemplates(templates);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 }
