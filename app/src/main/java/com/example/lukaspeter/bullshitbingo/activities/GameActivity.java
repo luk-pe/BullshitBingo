@@ -174,13 +174,10 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
     }
 
     private void onCallBingoClick() {
-        // TODO Save game in DB and go back to Menu
-        Toast.makeText(this, "CONGRATULATIONS!", Toast.LENGTH_SHORT).show();
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "I CALL BINGO!!! Looks like I won the \"" + mTemplate.getName() + "\" game!");
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, "Share your victory!"));
     }
- /*
-    @Override
-    public void onBackPressed()
-    {
-       // TODO go back to MyGamesFragment
-    }*/
 }
