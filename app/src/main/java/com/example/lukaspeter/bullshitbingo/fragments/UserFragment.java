@@ -86,10 +86,12 @@ public class UserFragment extends Fragment {
         txtUserName = this.getActivity().findViewById(R.id.textViewName);
         txtUserMail = this.getActivity().findViewById(R.id.textViewMail);
 
-        if(user != null) {
+        if(user.getDisplayName() != null) {
             txtUserName.setText(user.getDisplayName().isEmpty() ? getString(R.string.example_name) : user.getDisplayName());
-            txtUserMail.setText(user.getEmail());
+        } else {
+            txtUserName.setText(getString(R.string.example_name));
         }
+        txtUserMail.setText(user.getEmail());
 
         // Load subscribers
         FirebaseDB.getInstance().getSubscribesTo().observe(getActivity(), new Observer<List<HashMap<String,String>>>() {
