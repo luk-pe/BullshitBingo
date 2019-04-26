@@ -2,18 +2,14 @@ package com.example.lukaspeter.bullshitbingo.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.lukaspeter.bullshitbingo.R;
-import com.example.lukaspeter.bullshitbingo.activities.GameActivity;
 import com.example.lukaspeter.bullshitbingo.helpers.TempItem;
-import com.example.lukaspeter.bullshitbingo.models.Item;
 
 import java.util.List;
 
@@ -59,12 +55,12 @@ public class GameGridViewAdapter extends BaseAdapter {
 
         final TempItem item = items.get(i);
 
-        TextView textViewTitle = (TextView)
-                view.findViewById(R.id.gridview_game_item_title);
+        TextView textViewTitle = view.findViewById(R.id.gridview_game_item_title);
         textViewTitle.setText(item.getName());
 
         // Adjust Font size
-        if (item.getName().length() > 30) textViewTitle.setTextSize(12);
+        if (item.getName().length() > 50) textViewTitle.setTextSize(8);
+        else if (item.getName().length() > 30) textViewTitle.setTextSize(12);
         else if (item.getName().length() > 10) textViewTitle.setTextSize(14);
         else textViewTitle.setTextSize(18);
 

@@ -21,6 +21,7 @@
     <string name="create_local_copy">Create local copy!</string>
     <string name="created_by">Created by</string>
     <string name="make_public">Make Public</string>
+    <string name="make_public_question">Do you want to upload your template?</string>
     <string name="success">Successful</string>
     <string name="error">Error</string>
     <string name="success_public">Template is now available online!</string>
