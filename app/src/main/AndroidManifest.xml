@@ -21,16 +21,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RemoteTemplateDetailActivity" />
-        <activity android:name=".activities.TemplateDetailActivity" />
-        <activity android:name=".activities.GameActivity" />
-        <activity android:name=".activities.NewGameActivity" />
+        <activity android:name=".activities.RemoteTemplateDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.TemplateDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.GameActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.NewGameActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/title_activity_main">
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
