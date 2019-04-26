@@ -31,6 +31,7 @@ import com.example.lukaspeter.bullshitbingo.activities.RemoteTemplateDetailActiv
 import com.example.lukaspeter.bullshitbingo.adapters.SearchListAdapter;
 import com.example.lukaspeter.bullshitbingo.adapters.SubscribesToAdapter;
 import com.example.lukaspeter.bullshitbingo.helpers.SimpleAlertDialog;
+import com.example.lukaspeter.bullshitbingo.models.DataRepository;
 import com.example.lukaspeter.bullshitbingo.models.FirebaseDB;
 import com.example.lukaspeter.bullshitbingo.models.RemoteTemplate;
 import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
@@ -47,7 +48,6 @@ import java.util.List;
 import java.util.Map;
 
 public class UserFragment extends Fragment {
-
     private TextView txtUserName;
     private TextView txtUserMail;
     private FirebaseAuth mAuth;
@@ -86,9 +86,10 @@ public class UserFragment extends Fragment {
         txtUserName = this.getActivity().findViewById(R.id.textViewName);
         txtUserMail = this.getActivity().findViewById(R.id.textViewMail);
 
-        txtUserName.setText(user.getDisplayName().isEmpty() ? getString(R.string.example_name) : user.getDisplayName());
-        txtUserMail.setText(user.getEmail());
-
+        if(user != null) {
+            txtUserName.setText(user.getDisplayName().isEmpty() ? getString(R.string.example_name) : user.getDisplayName());
+            txtUserMail.setText(user.getEmail());
+        }
 
         // Load subscribers
         FirebaseDB.getInstance().getSubscribesTo().observe(getActivity(), new Observer<List<HashMap<String,String>>>() {
@@ -168,6 +169,8 @@ public class UserFragment extends Fragment {
 
     private void logoutUser() {
         mAuth.signOut();
+        DataRepository mDataRepository = new DataRepository(this.getActivity().getApplication());
+        mDataRepository.clearLokalDB();
         Intent login = new Intent(getActivity(), LoginActivity.class);
         getActivity().startActivity(login);
     }

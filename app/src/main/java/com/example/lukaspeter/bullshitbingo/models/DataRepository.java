@@ -19,17 +19,25 @@ public class DataRepository {
     private ItemDao mItemDao;
     private GameDao mGameDao;
     private GamelogDao mGamelogDao;
-
+    private AppDatabase db;
     private FirebaseDB firebaseDB;
 
     public DataRepository(Application application) {
-        AppDatabase db = AppDatabase.getDatabase(application);
+        db = AppDatabase.getDatabase(application);
         mTemplateDao = db.templateDao();
         mItemDao = db.itemDao();
         mGameDao = db.gameDao();
         mGamelogDao = db.gamelogDao();
 
         firebaseDB = FirebaseDB.getInstance();
+    }
+
+    /**
+     * DB METHODS
+     */
+
+    public void clearLokalDB(){
+        new DeleteAsyncTask(db).execute(0);
     }
 
     /**
