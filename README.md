@@ -8,7 +8,7 @@ MUST-HAVEs:
 
 - mindestens 3 nicht triviale Screens ✅
   - GameView
-  - LogView
+  - LoginView
   - Listen lokaler und globaler Templates
  
 - mindestens 2 Ebenen der Navigation ✅
