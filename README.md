@@ -20,8 +20,7 @@ MUST-HAVEs:
 
 - Daten in SQLite mit RoomVerwalten ✅
  
-- Bearbeiten von Items/Templates o.ä. ? ⚠️
-   - -> Template -> Game ❗️Daten Inkonsistenz❗️
+- Bearbeiten von Template Descriptions ✅
  
 - einheitliches Design ✅
  
@@ -41,8 +40,7 @@ NICE-TO-HAVES:
 
  Optional 
 ----------
-- Share Funktion 
+- Share Funktion  ✅ 
   
-- Benutzer Konzept inkl. Authentifizierung❓
+- Benutzer Konzept inkl. Authentifizierung ✅ 
 
-- Push Notifications❓
