@@ -13,7 +13,7 @@ public class DeleteAsyncTask extends AsyncTask<Object, Void, Void> {
     public DeleteAsyncTask(Object object) {
         if (object instanceof GameDao) {
             gameDao = (GameDao) object;
-        } else if (object instanceof AppDatabase){
+        } else if (object instanceof AppDatabase) {
             db = (AppDatabase) object;
         }
     }

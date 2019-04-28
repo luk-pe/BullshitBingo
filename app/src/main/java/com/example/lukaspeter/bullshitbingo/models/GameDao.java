@@ -36,7 +36,6 @@ public interface GameDao {
             "FROM Game INNER JOIN Template ON Game.template = Template.id")
     LiveData<List<GameWithTemplate>> getAllGamesWithTemplate();
 
-    // ToDo: delete method
     @Query("SELECT * FROM game")
     LiveData<List<Game>> getAllGames();
 

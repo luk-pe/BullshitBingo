@@ -14,7 +14,6 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface ItemDao {
 
-    //TODO: check onConflict
     @Insert(onConflict = REPLACE)
     void insertItem(Item item);
 

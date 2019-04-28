@@ -43,7 +43,7 @@ public abstract class AppDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    //Create Test Data
+    // Class to generate test data
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
         private final TemplateDao templateDao;
         private final ItemDao itemDao;
@@ -55,46 +55,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(final Void... params) {
-            //itemDao.deleteAllItems();
-            //templateDao.deleteAllTemplates();
-            /*
-            Template template = new Template("Dinge die Michi sagt", "Lukas", false, new Date());
-            long tid = templateDao.insertTemplate(template);
-            // template = new Template("Autos die von Lüdin gerammt werden", "Lukas", false, new Date());
-            //templateDao.insertTemplate(template);
-            Item item = new Item(1, "Du hast die Kontrolle über dein Leben verloren", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(2, "Lukas ist der Beste", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(3, "kek", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(4, "ober anstrengend", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(5, "Beste", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(6, "React ist über einfach", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(7, "über lässig", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(8, "edel", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(9, "Bild+", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(10, "Junge", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(11, "ich war in Frankreich einkaufen", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(12, "Cola Zero", (int) tid); // TODO Lukas -> hier war cola zero bug weil du 1 statt (int) tid gemacht hast...
-            itemDao.insertItem(item);
-            item = new Item(13, "Wenn ich Euro Jackpot gewinn", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(14, "Kein Bock auf Praxisphase bei Coop", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(15, "Ich geh in Europapark", (int) tid);
-            itemDao.insertItem(item);
-            item = new Item(16, "Macan", (int) tid);
-            itemDao.insertItem(item);
-            */
+
+            // Create test data if needed...
 
             return null;
         }

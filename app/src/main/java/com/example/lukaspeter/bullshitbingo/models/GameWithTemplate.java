@@ -1,7 +1,6 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
 import android.arch.persistence.room.Embedded;
-import android.arch.persistence.room.Relation;
 
 public class GameWithTemplate {
     @Embedded

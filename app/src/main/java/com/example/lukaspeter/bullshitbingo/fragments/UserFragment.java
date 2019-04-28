@@ -1,7 +1,6 @@
 package com.example.lukaspeter.bullshitbingo.fragments;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,26 +23,18 @@ import android.widget.Toast;
 
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.activities.LoginActivity;
-import com.example.lukaspeter.bullshitbingo.activities.MainActivity;
-import com.example.lukaspeter.bullshitbingo.activities.RemoteTemplateDetailActivity;
-import com.example.lukaspeter.bullshitbingo.adapters.SearchListAdapter;
 import com.example.lukaspeter.bullshitbingo.adapters.SubscribesToAdapter;
 import com.example.lukaspeter.bullshitbingo.helpers.SimpleAlertDialog;
 import com.example.lukaspeter.bullshitbingo.models.DataRepository;
 import com.example.lukaspeter.bullshitbingo.models.FirebaseDB;
-import com.example.lukaspeter.bullshitbingo.models.RemoteTemplate;
-import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class UserFragment extends Fragment {
     private TextView txtUserName;
@@ -86,7 +75,7 @@ public class UserFragment extends Fragment {
         txtUserName = this.getActivity().findViewById(R.id.textViewName);
         txtUserMail = this.getActivity().findViewById(R.id.textViewMail);
 
-        if(user.getDisplayName() != null) {
+        if (user.getDisplayName() != null) {
             txtUserName.setText(user.getDisplayName().isEmpty() ? getString(R.string.example_name) : user.getDisplayName());
         } else {
             txtUserName.setText(getString(R.string.example_name));
@@ -94,9 +83,9 @@ public class UserFragment extends Fragment {
         txtUserMail.setText(user.getEmail());
 
         // Load subscribers
-        FirebaseDB.getInstance().getSubscribesTo().observe(getActivity(), new Observer<List<HashMap<String,String>>>() {
+        FirebaseDB.getInstance().getSubscribesTo().observe(getActivity(), new Observer<List<HashMap<String, String>>>() {
             @Override
-            public void onChanged(@Nullable List<HashMap<String,String>> subscribes_to) {
+            public void onChanged(@Nullable List<HashMap<String, String>> subscribes_to) {
                 adapter.setUsers(subscribes_to);
             }
         });
@@ -104,7 +93,7 @@ public class UserFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_user,menu);
+        inflater.inflate(R.menu.menu_user, menu);
     }
 
     @Override
@@ -209,18 +198,17 @@ public class UserFragment extends Fragment {
             @Override
             public void onChanged(@Nullable HashMap<String, String> user) {
                 if (user == null) {
-                    SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(),R.string.error,R.string.user_not_found);
+                    SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(), R.string.error, R.string.user_not_found);
                     alert.show();
                 } else {
-                    Log.d("ADDSUBSCRIBER",user.get("uid"));
                     FirebaseDB.getInstance().addSubscriber(user).observe(getActivity(), new Observer<Boolean>() {
                         @Override
                         public void onChanged(@Nullable Boolean success) {
                             if (success) {
-                                SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(),R.string.success,R.string.success);
+                                SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(), R.string.success, R.string.success);
                                 alert.show();
                             } else {
-                                SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(),R.string.error,R.string.error);
+                                SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(), R.string.error, R.string.error);
                                 alert.show();
                             }
                         }
@@ -242,22 +230,22 @@ public class UserFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            FirebaseDB.getInstance().updateUser(user.getUid(),name).observe(getActivity(), new Observer<Boolean>() {
+                            FirebaseDB.getInstance().updateUser(user.getUid(), name).observe(getActivity(), new Observer<Boolean>() {
                                 @Override
                                 public void onChanged(@Nullable Boolean success) {
                                     if (success) {
-                                        SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(),R.string.ok,R.string.success);
+                                        SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(), R.string.ok, R.string.success);
                                         alert.show();
                                         txtUserName.setText(name);
                                     } else {
-                                        SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(),R.string.error,R.string.error);
+                                        SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(), R.string.error, R.string.error);
                                         alert.show();
                                     }
                                 }
                             });
 
                         } else {
-                            SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(),R.string.error,R.string.error);
+                            SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(), R.string.error, R.string.error);
                             alert.show();
                         }
                     }

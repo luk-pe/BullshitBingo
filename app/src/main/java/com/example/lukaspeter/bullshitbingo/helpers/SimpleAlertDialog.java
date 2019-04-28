@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.example.lukaspeter.bullshitbingo.R;
-import com.example.lukaspeter.bullshitbingo.activities.NewGameActivity;
 
 public class SimpleAlertDialog {
 

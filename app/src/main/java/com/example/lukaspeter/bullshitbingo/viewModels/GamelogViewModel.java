@@ -24,6 +24,7 @@ public class GamelogViewModel extends AndroidViewModel {
         List<Gamelog> mGamelogEntries = mDataRepository.getGameStatus(gameId);
         return mGamelogEntries;
     }
+
     public boolean getItemStatus(int gameId, int itemId) {
         boolean mChecked = mDataRepository.getItemStatus(gameId, itemId);
         return mChecked;

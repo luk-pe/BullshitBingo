@@ -6,19 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.adapters.GameGridViewAdapter;
-import com.example.lukaspeter.bullshitbingo.helpers.SimpleAlertDialog;
 import com.example.lukaspeter.bullshitbingo.helpers.TempItem;
-import com.example.lukaspeter.bullshitbingo.models.Game;
 import com.example.lukaspeter.bullshitbingo.models.Item;
 import com.example.lukaspeter.bullshitbingo.models.RemoteTemplate;
 import com.example.lukaspeter.bullshitbingo.models.Template;
@@ -27,7 +22,6 @@ import com.example.lukaspeter.bullshitbingo.viewModels.ItemViewModel;
 import com.example.lukaspeter.bullshitbingo.viewModels.TemplateViewModel;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RemoteTemplateDetailActivity extends AppCompatActivity implements GameGridViewAdapter.OnClickGridViewItemListener {
@@ -72,8 +66,8 @@ public class RemoteTemplateDetailActivity extends AppCompatActivity implements G
 
         ArrayList<String> templateItems = mTemplate.getItems();
         ArrayList<TempItem> tempItems = new ArrayList<>();
-        for (int i=0;i<templateItems.size();i++) {
-            tempItems.add(new TempItem(i+1, templateItems.get(i),false));
+        for (int i = 0; i < templateItems.size(); i++) {
+            tempItems.add(new TempItem(i + 1, templateItems.get(i), false));
         }
         adapter.setItems(tempItems);
     }
@@ -100,7 +94,7 @@ public class RemoteTemplateDetailActivity extends AppCompatActivity implements G
 
         // Save local copy of template and items on device
         Template template = mTemplateViewModel.getTemplateByRemoteId(mTemplate.getId());
-        if(template == null){
+        if (template == null) {
             template = new Template(mTemplate.getName(), mTemplate.getCreator(), false, mTemplate.getCreated(), mTemplate.getDescription(), mTemplate.getId());
             long tid = mTemplateViewModel.insertTemplate(template);
             // create items

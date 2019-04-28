@@ -46,8 +46,6 @@ public class MyGamesFragment extends Fragment implements GamesListAdapter.OnClic
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        // TODO: Change to GameViewModel and pass games to adapter
-
         GameViewModel mGameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
         mGameViewModel.getAllGamesWithTemplate().observe(this, new Observer<List<GameWithTemplate>>() {
             @Override
@@ -66,8 +64,6 @@ public class MyGamesFragment extends Fragment implements GamesListAdapter.OnClic
             Intent mIntent = new Intent(this.getActivity(), GameActivity.class);
             mIntent.putExtra("game_id", game.getId());
             startActivity(mIntent);
-        } else {
-            // TODO: Intent for Game stats
         }
     }
 }

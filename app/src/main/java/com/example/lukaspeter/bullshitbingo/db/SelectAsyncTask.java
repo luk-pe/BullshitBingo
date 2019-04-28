@@ -30,12 +30,12 @@ public class SelectAsyncTask extends AsyncTask<Object, Void, Object> {
     protected Object doInBackground(final Object... params) {
 
         if (templateDao != null) {
-            if(params[0] instanceof Integer && (Integer) params[0] > 0){
+            if (params[0] instanceof Integer && (Integer) params[0] > 0) {
                 return templateDao.templateById((Integer) params[0]);
-            } else if(params[0] instanceof String) {
+            } else if (params[0] instanceof String) {
                 return templateDao.templateByRemoteId((String) params[0]);
             } else {
-               return templateDao.getAllTemplates();
+                return templateDao.getAllTemplates();
             }
         } else if (itemDao != null) {
             return itemDao.getTemplateItems((Integer) params[0]);
@@ -43,9 +43,10 @@ public class SelectAsyncTask extends AsyncTask<Object, Void, Object> {
             if ((Integer) params[0] != 0) return gameDao.gameById((Integer) params[0]);
             else return gameDao.getAllGamesWithTemplate();
         } else if (gamelogDao != null) {
-            if(params[1] != null) return gamelogDao.getItemStatus((Integer) params[0], (Integer) params[1]);
+            if (params[1] != null)
+                return gamelogDao.getItemStatus((Integer) params[0], (Integer) params[1]);
             else return gamelogDao.getGameStatus((Integer) params[0]);
-        }else {
+        } else {
             return null;
         }
     }

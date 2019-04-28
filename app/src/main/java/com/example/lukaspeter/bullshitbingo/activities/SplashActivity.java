@@ -3,13 +3,11 @@ package com.example.lukaspeter.bullshitbingo.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.lukaspeter.bullshitbingo.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.internal.InternalTokenProvider;
 
 public class SplashActivity extends AppCompatActivity {
 

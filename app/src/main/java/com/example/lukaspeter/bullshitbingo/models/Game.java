@@ -45,11 +45,11 @@ public class Game {
         // Init Positions
         ArrayList<Integer> positions = new ArrayList<>();
         for (int i = 0; i < 16; i++) {
-            positions.add(i+1);
+            positions.add(i + 1);
         }
         Collections.shuffle(positions);
         String itemPositions = "";
-        for (int i = 0; i < positions.size(); i++){
+        for (int i = 0; i < positions.size(); i++) {
             itemPositions += String.valueOf(positions.get(i)) + ";";
         }
         this.itemPositions = itemPositions;

@@ -64,11 +64,11 @@ public class SearchFragment extends Fragment implements SearchListAdapter.OnClic
 
             @Override
             public boolean onQueryTextChange(String s) {
-
                 return false;
             }
         });
     }
+
     @Override
     public void onClickRemoteTemplateListItem(RemoteTemplate template) {
         Intent mIntent = new Intent(this.getActivity(), RemoteTemplateDetailActivity.class);

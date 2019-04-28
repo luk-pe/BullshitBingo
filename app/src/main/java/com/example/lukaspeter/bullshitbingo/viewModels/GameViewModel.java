@@ -35,11 +35,11 @@ public class GameViewModel extends AndroidViewModel {
         return mDataRepository.getGameById(id);
     }
 
-    public LiveData<List<Game>> getAllGames(){
+    public LiveData<List<Game>> getAllGames() {
         return mDataRepository.getAllGames();
     }
 
-    public LiveData<List<GameWithTemplate>> getAllGamesWithTemplate(){
+    public LiveData<List<GameWithTemplate>> getAllGamesWithTemplate() {
         return mDataRepository.getAllGamesWithTemplate();
     }
 }

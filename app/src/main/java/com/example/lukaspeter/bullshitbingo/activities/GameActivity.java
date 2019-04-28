@@ -13,7 +13,6 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.lukaspeter.bullshitbingo.R;
 import com.example.lukaspeter.bullshitbingo.adapters.GameGridViewAdapter;
@@ -133,7 +132,6 @@ public class GameActivity extends AppCompatActivity implements GameGridViewAdapt
         setBtnCallBingoVisibility(false);
 
     }
-
 
 
     private void setBtnCallBingoVisibility(boolean visible) {

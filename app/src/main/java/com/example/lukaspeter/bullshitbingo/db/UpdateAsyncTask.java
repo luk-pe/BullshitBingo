@@ -25,7 +25,7 @@ public class UpdateAsyncTask extends AsyncTask<Object, Void, Void> {
                 gameDao.updateGame((Game) params[0]);
             }
         } else if (templateDao != null) {
-            if (params[0] instanceof String && params[1] instanceof Integer){
+            if (params[0] instanceof String && params[1] instanceof Integer) {
                 templateDao.updateDescription((String) params[0], (Integer) params[1]);
             }
         }

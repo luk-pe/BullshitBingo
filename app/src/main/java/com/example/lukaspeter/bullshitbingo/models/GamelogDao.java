@@ -16,7 +16,6 @@ public interface GamelogDao {
     @Insert(onConflict = IGNORE)
     void insertGamelog(Gamelog gamelog);
 
-    //TODO: check if method needed?
     @Query("SELECT * FROM Gamelog WHERE game = :game GROUP BY item ORDER BY date DESC")
     List<Gamelog> getGameStatus(int game);
 

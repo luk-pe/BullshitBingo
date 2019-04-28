@@ -36,7 +36,7 @@ public class DataRepository {
      * DB METHODS
      */
 
-    public void clearLokalDB(){
+    public void clearLokalDB() {
         new DeleteAsyncTask(db).execute(0);
     }
 
@@ -54,7 +54,7 @@ public class DataRepository {
         return null;
     }
 
-    public Template getTemplateByRemoteId(String remoteId){
+    public Template getTemplateByRemoteId(String remoteId) {
         try {
             return (Template) new SelectAsyncTask(mTemplateDao).execute(remoteId).get();
         } catch (ExecutionException | InterruptedException e) {
@@ -86,7 +86,7 @@ public class DataRepository {
         return id;
     }
 
-    public void updateTemplateDescription(String description, int templateId){
+    public void updateTemplateDescription(String description, int templateId) {
         new UpdateAsyncTask(mTemplateDao).execute(description, templateId);
     }
 
@@ -105,11 +105,6 @@ public class DataRepository {
             e.printStackTrace();
         }
         return null;
-
-        //obsolete code without selectAsyncTask
-        //LiveData<List<Item>> mTemplateItems;
-        //mTemplateItems = mItemDao.getTemplateItems(templateId);
-        //return mTemplateItems;
     }
 
     /**
@@ -137,7 +132,7 @@ public class DataRepository {
         new DeleteAsyncTask(mGameDao).execute(game);
     }
 
-    public Game getGameById (int id) {
+    public Game getGameById(int id) {
         try {
             return (Game) new SelectAsyncTask(mGameDao).execute(id).get();
         } catch (ExecutionException | InterruptedException e) {
@@ -147,7 +142,7 @@ public class DataRepository {
         return null;
     }
 
-    public LiveData<List<Game>> getAllGames(){
+    public LiveData<List<Game>> getAllGames() {
         try {
             return (LiveData<List<Game>>) new SelectAsyncTask(mGameDao).execute(0).get();
         } catch (ExecutionException | InterruptedException e) {
@@ -157,7 +152,7 @@ public class DataRepository {
         return null;
     }
 
-    public LiveData<List<GameWithTemplate>> getAllGamesWithTemplate(){
+    public LiveData<List<GameWithTemplate>> getAllGamesWithTemplate() {
         try {
             return (LiveData<List<GameWithTemplate>>) new SelectAsyncTask(mGameDao).execute(0).get();
         } catch (ExecutionException | InterruptedException e) {
@@ -184,7 +179,7 @@ public class DataRepository {
         return null;
     }
 
-    public  boolean getItemStatus (int gameId, int itemId){
+    public boolean getItemStatus(int gameId, int itemId) {
         try {
             return (boolean) new SelectAsyncTask(mGamelogDao).execute(gameId, itemId).get();
         } catch (ExecutionException | InterruptedException e) {
@@ -195,7 +190,7 @@ public class DataRepository {
     }
 
     /**
-     *  FIREBASE METHODS
+     * FIREBASE METHODS
      */
 
     public MutableLiveData<List<RemoteTemplate>> getAllRemoteTemplates() {
@@ -210,7 +205,7 @@ public class DataRepository {
 
         ArrayList<String> itemList = new ArrayList<>();
         for (Item item : items) itemList.add(item.getName());
-        RemoteTemplate template = new RemoteTemplate(null,t.getName(),t.getCreator(),description,0,t.getCreated(),itemList);
+        RemoteTemplate template = new RemoteTemplate(null, t.getName(), t.getCreator(), description, 0, t.getCreated(), itemList);
 
         return firebaseDB.insertTemplate(template);
     }

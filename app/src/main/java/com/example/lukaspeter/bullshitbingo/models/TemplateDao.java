@@ -13,7 +13,6 @@ import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 @Dao
 public interface TemplateDao {
 
-    //TODO: check onConflict
     @Insert(onConflict = IGNORE)
     long insertTemplate(Template template);
 
@@ -34,7 +33,6 @@ public interface TemplateDao {
 
     @Query("SELECT * FROM Template WHERE name LIKE :input OR creator LIKE :input")
     List<Template> findTemplate(String input);
-    //TODO: add "%" to the input
 
     @Query("UPDATE Template SET description = :description WHERE id= :id")
     void updateDescription(String description, int id);

@@ -16,7 +16,7 @@ import java.util.List;
 public class SubscribesToAdapter extends RecyclerView.Adapter<SubscribesToAdapter.SubscribesToListItemViewHolder> {
 
     private final LayoutInflater mInflater;
-    private List<HashMap<String,String>> mUsers;
+    private List<HashMap<String, String>> mUsers;
 
     public SubscribesToAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
@@ -31,7 +31,7 @@ public class SubscribesToAdapter extends RecyclerView.Adapter<SubscribesToAdapte
     @Override
     public void onBindViewHolder(SubscribesToAdapter.SubscribesToListItemViewHolder holder, int position) {
         if (mUsers != null) {
-            final HashMap<String,String> currentUser = mUsers.get(position);
+            final HashMap<String, String> currentUser = mUsers.get(position);
 
             holder.txtViewTemplateName.setText(currentUser.get("email"));
             holder.txtViewCreatedBy.setText("");
@@ -40,7 +40,7 @@ public class SubscribesToAdapter extends RecyclerView.Adapter<SubscribesToAdapte
         }
     }
 
-    public void setUsers(List<HashMap<String,String>> users) {
+    public void setUsers(List<HashMap<String, String>> users) {
         mUsers = users;
         notifyDataSetChanged();
     }

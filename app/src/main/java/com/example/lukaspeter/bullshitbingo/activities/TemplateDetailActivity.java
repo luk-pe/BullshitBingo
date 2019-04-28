@@ -39,7 +39,6 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
     private Button btnStart;
     private Button btnMakePublic;
     private ItemViewModel mItemViewModel;
-    //private List<TempItem> tempItems = new ArrayList<>();
     private Template mTemplate;
     private List<Item> mItems = new ArrayList<>();
     private TemplateViewModel mTemplateViewModel;
@@ -99,7 +98,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
 
     private void initButtons() {
         btnEditDescription = this.findViewById(R.id.template_detail_button_edit_description);
-        btnEditDescription.setOnClickListener(new View.OnClickListener(){
+        btnEditDescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDescriptionChangeDialog(mTemplate.getDescription());
@@ -158,7 +157,8 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {}
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
@@ -167,21 +167,21 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
     private void onAlertOKBtnClick(String editTextCreator, String editTextDescription) {
         btnMakePublic.setEnabled(false);
         mTemplate.setCreator(editTextCreator);
-        mTemplateViewModel.uploadTemplate(mTemplate,mItems,editTextDescription).observe(TemplateDetailActivity.this, new Observer<Boolean>() {
+        mTemplateViewModel.uploadTemplate(mTemplate, mItems, editTextDescription).observe(TemplateDetailActivity.this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean success) {
                 if (success) {
-                    new SimpleAlertDialog(TemplateDetailActivity.this,R.string.success, R.string.success_public).show();
+                    new SimpleAlertDialog(TemplateDetailActivity.this, R.string.success, R.string.success_public).show();
                     btnMakePublic.setVisibility(View.GONE);
                 } else {
-                    new SimpleAlertDialog(TemplateDetailActivity.this,R.string.error, R.string.error_public).show();
+                    new SimpleAlertDialog(TemplateDetailActivity.this, R.string.error, R.string.error_public).show();
                     btnMakePublic.setEnabled(true);
                 }
             }
         });
     }
 
-    private void showDescriptionChangeDialog(String description){
+    private void showDescriptionChangeDialog(String description) {
         // get prompts.xml view
         LayoutInflater layoutInflater = LayoutInflater.from(TemplateDetailActivity.this);
         View promptView = layoutInflater.inflate(R.layout.dialog_change_description, null);
@@ -214,7 +214,7 @@ public class TemplateDetailActivity extends AppCompatActivity implements GameGri
         // Do nothing in DetailView
     }
 
-    private void updateDescription(String description){
+    private void updateDescription(String description) {
         txtViewDescription.setText(description);
         mTemplateViewModel.updateTemplateDescription(description, mTemplate.getId());
     }

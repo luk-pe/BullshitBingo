@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,9 +80,10 @@ public class NewGameActivity extends AppCompatActivity {
                     if (username.equals("")) username = user.getEmail();
                     EditText templateDescriptionInput = findViewById(R.id.description);
                     String templateDescription = templateDescriptionInput.getText().toString();
+
                     template = new Template(templateNameString, username, true, new Date(), templateDescription, null);
                     long tid = mTemplateViewModel.insertTemplate(template);
-                    Log.d("Lukas", "tid: " + tid);
+
                     // check if tid == 0 -> template wasn't created -> exception in dataRepository
                     if (tid == 0) {
                         AlertDialog.Builder builder;

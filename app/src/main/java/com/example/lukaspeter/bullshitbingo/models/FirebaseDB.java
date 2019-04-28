@@ -1,12 +1,10 @@
 package com.example.lukaspeter.bullshitbingo.models;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,7 +14,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -61,7 +58,7 @@ public class FirebaseDB {
                                 ArrayList<String> items = (ArrayList<String>) document.get("items");
 
                                 // TODO was soll mit der ID gemacht werden???
-                                RemoteTemplate t = new RemoteTemplate(id,name,creator,description,downloaded,created,items);
+                                RemoteTemplate t = new RemoteTemplate(id, name, creator, description, downloaded, created, items);
                                 templates.add(t);
                             }
 
@@ -84,7 +81,7 @@ public class FirebaseDB {
         firebaseDB.collection("templates")
                 .orderBy("name")
                 .startAt(name)
-                .endAt(name+"\uf8ff")
+                .endAt(name + "\uf8ff")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -102,7 +99,7 @@ public class FirebaseDB {
                                 ArrayList<String> items = (ArrayList<String>) document.get("items");
 
                                 // TODO was soll mit der ID gemacht werden???
-                                RemoteTemplate t = new RemoteTemplate(id,name,creator,description,downloaded,created,items);
+                                RemoteTemplate t = new RemoteTemplate(id, name, creator, description, downloaded, created, items);
                                 templates.add(t);
                             }
 
@@ -145,12 +142,12 @@ public class FirebaseDB {
         return success;
     }
 
-    public MutableLiveData<HashMap<String,String>> findUserByMail(String mail) {
+    public MutableLiveData<HashMap<String, String>> findUserByMail(String mail) {
 
-        final MutableLiveData<HashMap<String,String>> liveData = new MutableLiveData<>();
+        final MutableLiveData<HashMap<String, String>> liveData = new MutableLiveData<>();
 
         firebaseDB.collection("users")
-                .whereEqualTo("email",mail)
+                .whereEqualTo("email", mail)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -158,7 +155,7 @@ public class FirebaseDB {
                         if (task.isSuccessful()) {
                             ArrayList<RemoteTemplate> templates = new ArrayList<>();
 
-                            HashMap<String,String> user = new HashMap<>();
+                            HashMap<String, String> user = new HashMap<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 user.put("uid", document.getId());
                                 user.put("name", document.getString("name"));
@@ -172,7 +169,7 @@ public class FirebaseDB {
                             Log.w("DataRepository", "Error getting documents.", task.getException());
                         }
                     }
-        });
+                });
 
         return liveData;
     }
@@ -180,7 +177,7 @@ public class FirebaseDB {
     public MutableLiveData<Boolean> updateUser(String uid, String username) {
 
         Map<String, Object> user = new HashMap<>();
-        user.put("name",username);
+        user.put("name", username);
         final MutableLiveData<Boolean> success = new MutableLiveData<>();
         firebaseDB.collection("users").document(uid).set(user)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -193,7 +190,7 @@ public class FirebaseDB {
         return success;
     }
 
-    public MutableLiveData<Boolean> addSubscriber(final HashMap<String,String> user) {
+    public MutableLiveData<Boolean> addSubscriber(final HashMap<String, String> user) {
         String userUID = user.get("uid");
         final String userMail = user.get("email");
         final MutableLiveData<Boolean> success = new MutableLiveData<>();
@@ -203,7 +200,7 @@ public class FirebaseDB {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                            HashMap<String,String> sub_to = new HashMap<>();
+                            HashMap<String, String> sub_to = new HashMap<>();
                             firebaseDB.collection("users").document(currentUser.getUid()).update("subscribes_to", FieldValue.arrayUnion(user))
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -220,10 +217,10 @@ public class FirebaseDB {
         return success;
     }
 
-    public MutableLiveData<List<HashMap<String,String>>> getSubscribesTo() {
+    public MutableLiveData<List<HashMap<String, String>>> getSubscribesTo() {
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final MutableLiveData<List<HashMap<String,String>>> liveData = new MutableLiveData<>();
+        final MutableLiveData<List<HashMap<String, String>>> liveData = new MutableLiveData<>();
 
         firebaseDB.collection("users")
                 .document(user.getUid())
@@ -232,7 +229,7 @@ public class FirebaseDB {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
-                            ArrayList<HashMap<String,String>> subscribes_to = new ArrayList<>();
+                            ArrayList<HashMap<String, String>> subscribes_to = new ArrayList<>();
                             DocumentSnapshot document = task.getResult();
 
                             subscribes_to = (ArrayList<HashMap<String, String>>) document.get("subscribes_to");
