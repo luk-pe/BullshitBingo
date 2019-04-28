@@ -25,7 +25,9 @@
             android:layout_below="@id/textView_templateName"
             android:layout_marginBottom="24dp"
             android:hint="Template"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:singleLine="true"
+            android:nextFocusDown="@+id/item1"/>
         <TextView
             android:id="@+id/textView_items"
             android:layout_width="wrap_content"
@@ -74,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item2"
                 android:hint="Item 1" />
 
             <EditText
@@ -82,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item3"
                 android:hint="Item 2" />
 
             <EditText
@@ -90,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item4"
                 android:hint="Item 3" />
 
             <EditText
@@ -98,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item5"
                 android:hint="Item 4" />
 
             <EditText
@@ -106,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item6"
                 android:hint="Item 5" />
 
             <EditText
@@ -114,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item7"
                 android:hint="Item 6" />
 
             <EditText
@@ -122,12 +130,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item8"
                 android:hint="Item 7" />
             <EditText
                 android:id="@+id/item8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:nextFocusDown="@+id/item9"
                 android:singleLine="true"
                 android:hint="Item 8" />
             <EditText
@@ -136,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item10"
                 android:hint="Item 9" />
             <EditText
                 android:id="@+id/item10"
@@ -143,6 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item11"
                 android:hint="Item 10" />
             <EditText
                 android:id="@+id/item11"
@@ -150,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item12"
                 android:hint="Item 11" />
             <EditText
                 android:id="@+id/item12"
@@ -157,6 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item13"
                 android:hint="Item 12" />
             <EditText
                 android:id="@+id/item13"
@@ -164,6 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item14"
                 android:hint="Item 13" />
             <EditText
                 android:id="@+id/item14"
@@ -171,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item15"
                 android:hint="Item 14" />
             <EditText
                 android:id="@+id/item15"
@@ -178,6 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/item16"
                 android:hint="Item 15" />
             <EditText
                 android:id="@+id/item16"
@@ -185,6 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="true"
+                android:nextFocusDown="@+id/textView_description"
                 android:hint="Item 16" />
 
             <TextView
