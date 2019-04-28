@@ -77,9 +77,11 @@ public class NewGameActivity extends AppCompatActivity {
                 // no empty fields
                 else {
                     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String username = user.getDisplayName();
+                    if (username.equals("")) username = user.getEmail();
                     EditText templateDescriptionInput = findViewById(R.id.description);
                     String templateDescription = templateDescriptionInput.getText().toString();
-                    template = new Template(templateNameString, user.getDisplayName(), true, new Date(), templateDescription, null);
+                    template = new Template(templateNameString, username, true, new Date(), templateDescription, null);
                     long tid = mTemplateViewModel.insertTemplate(template);
                     Log.d("Lukas", "tid: " + tid);
                     // check if tid == 0 -> template wasn't created -> exception in dataRepository
