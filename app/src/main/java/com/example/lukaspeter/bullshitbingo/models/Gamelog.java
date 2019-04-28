@@ -10,7 +10,6 @@ import java.util.Date;
 @Entity(foreignKeys = @ForeignKey(entity = Game.class,
         parentColumns = "id",
         childColumns = "game",
-        //TODO: check onDelete
         onDelete = ForeignKey.CASCADE), primaryKeys = {"date", "game", "item"})
 
 public class Gamelog {

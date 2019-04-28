@@ -35,7 +35,6 @@ public class GamesListAdapter extends RecyclerView.Adapter<GamesListAdapter.Game
         if (mGames != null) {
             final GameWithTemplate g = mGames.get(position);
             holder.templateItemView.setText(g.getTemplate().getName());
-            // TODO: format Date
             holder.gameItemStartedView.setText(g.getGame().getStarted().toString());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

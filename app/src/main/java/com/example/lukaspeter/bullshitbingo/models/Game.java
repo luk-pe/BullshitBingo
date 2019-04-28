@@ -14,7 +14,6 @@ import java.util.Date;
 @Entity(foreignKeys = @ForeignKey(entity = Template.class,
         parentColumns = "id",
         childColumns = "template",
-        //TODO: check onDelete
         onDelete = ForeignKey.CASCADE))
 
 public class Game {

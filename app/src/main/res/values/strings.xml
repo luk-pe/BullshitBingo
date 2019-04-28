@@ -42,7 +42,6 @@
         completions."
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="example_name">No name</string>
     <string name="example_mail">mail@mail.com</string>

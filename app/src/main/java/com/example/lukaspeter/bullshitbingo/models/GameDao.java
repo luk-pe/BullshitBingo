@@ -18,7 +18,6 @@ public interface GameDao {
     @Query("SELECT * FROM game WHERE finishedDate IS NULL")
     List<Game> openGames();
 
-    //TODO: check onConflict
     @Insert(onConflict = REPLACE)
     long insertGame(Game game);
 

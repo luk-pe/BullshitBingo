@@ -57,7 +57,6 @@ public class FirebaseDB {
                                 long downloaded = document.getLong("downloaded");
                                 ArrayList<String> items = (ArrayList<String>) document.get("items");
 
-                                // TODO was soll mit der ID gemacht werden???
                                 RemoteTemplate t = new RemoteTemplate(id, name, creator, description, downloaded, created, items);
                                 templates.add(t);
                             }
@@ -98,7 +97,6 @@ public class FirebaseDB {
                                 long downloaded = document.getLong("downloaded");
                                 ArrayList<String> items = (ArrayList<String>) document.get("items");
 
-                                // TODO was soll mit der ID gemacht werden???
                                 RemoteTemplate t = new RemoteTemplate(id, name, creator, description, downloaded, created, items);
                                 templates.add(t);
                             }

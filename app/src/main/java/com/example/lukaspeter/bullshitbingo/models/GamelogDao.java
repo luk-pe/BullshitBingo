@@ -12,7 +12,6 @@ import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 @Dao
 public interface GamelogDao {
 
-    //TODO: check onConflict
     @Insert(onConflict = IGNORE)
     void insertGamelog(Gamelog gamelog);
 
