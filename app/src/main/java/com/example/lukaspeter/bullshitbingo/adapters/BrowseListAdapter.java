@@ -36,7 +36,11 @@ public class BrowseListAdapter extends RecyclerView.Adapter<BrowseListAdapter.Br
 
             holder.txtViewTemplateName.setText(currentTemplate.getName());
             holder.txtViewCreatedBy.setText(currentTemplate.getCreator());
-            holder.txtViewDownloadCounter.setText("🔥 " + String.valueOf(currentTemplate.getDownloaded()));
+            if (currentTemplate.getDownloaded() > 0) {
+                holder.txtViewDownloadCounter.setText("🔥 " + String.valueOf(currentTemplate.getDownloaded()));
+            } else {
+                holder.txtViewDownloadCounter.setText("");
+            }
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
