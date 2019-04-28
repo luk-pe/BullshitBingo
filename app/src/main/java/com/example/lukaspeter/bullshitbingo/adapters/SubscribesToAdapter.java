@@ -64,8 +64,4 @@ public class SubscribesToAdapter extends RecyclerView.Adapter<SubscribesToAdapte
             txtViewCreatedBy = itemView.findViewById(R.id.search_list_item_created_by);
         }
     }
-
-    public interface OnClickRemoteTemplateListListener {
-        void onClickRemoteTemplateListItem(RemoteTemplate template);
-    }
 }

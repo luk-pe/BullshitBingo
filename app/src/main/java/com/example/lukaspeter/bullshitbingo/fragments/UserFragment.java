@@ -40,6 +40,7 @@ public class UserFragment extends Fragment {
     private TextView txtUserName;
     private TextView txtUserMail;
     private FirebaseAuth mAuth;
+    private SubscribesToAdapter adapter;
 
     public static UserFragment newInstance() {
         return new UserFragment();
@@ -68,7 +69,7 @@ public class UserFragment extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
 
         final RecyclerView recyclerView = this.getActivity().findViewById(R.id.recyclerview);
-        final SubscribesToAdapter adapter = new SubscribesToAdapter(getActivity());
+        adapter = new SubscribesToAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -207,6 +208,13 @@ public class UserFragment extends Fragment {
                             if (success) {
                                 SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(), R.string.success, R.string.success);
                                 alert.show();
+                                // Load subscribers
+                                FirebaseDB.getInstance().getSubscribesTo().observe(getActivity(), new Observer<List<HashMap<String, String>>>() {
+                                    @Override
+                                    public void onChanged(@Nullable List<HashMap<String, String>> subscribes_to) {
+                                        adapter.setUsers(subscribes_to);
+                                    }
+                                });
                             } else {
                                 SimpleAlertDialog alert = new SimpleAlertDialog(getActivity(), R.string.error, R.string.error);
                                 alert.show();

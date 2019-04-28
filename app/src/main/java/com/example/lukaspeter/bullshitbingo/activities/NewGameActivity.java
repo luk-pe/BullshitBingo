@@ -77,7 +77,11 @@ public class NewGameActivity extends AppCompatActivity {
                 else {
                     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     String username = user.getDisplayName();
-                    if (username.equals("")) username = user.getEmail();
+                    if (username != null) {
+                        if (username.equals("")) username = user.getEmail();
+                    } else {
+                        username = user.getEmail();
+                    }
                     EditText templateDescriptionInput = findViewById(R.id.description);
                     String templateDescription = templateDescriptionInput.getText().toString();
 
